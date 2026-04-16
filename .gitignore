@@ -41,3 +41,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Python ###
+data/__pycache__/
+data/*.pyc
+data/QualifiedWorldCupTeams.csv
