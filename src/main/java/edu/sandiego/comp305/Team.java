@@ -1,24 +1,39 @@
 package edu.sandiego.comp305;
 
 public class Team {
-    private int ranking;
+    private final int ranking;
 
-    private String countryName;
+    private final String countryName;
 
-    private String countryCode;
+    private final String countryCode;
 
-    private int rating;
+    private final int rating;
 
-    private int totalGames;
+    private final int totalGames;
 
-    private int totalWins;
+    private final int totalWins;
 
-    private int totalLosses;
+    private final int totalLosses;
 
-    private int goalScored;
+    private final int goalsScored;
 
-    private int goalsConceded;
+    private final int goalsConceded;
 
+    public Team(final int ranking, final String countryName,
+                final String countryCode, final int rating,
+                final int totalGames, final int totalWins,
+                final int totalLosses, final int goalsScored,
+                final int goalsConceded){
+        this.ranking = ranking;
+        this.countryName = countryName;
+        this.countryCode = countryCode;
+        this.rating = rating;
+        this.totalGames = totalGames;
+        this.totalWins = totalWins;
+        this.totalLosses = totalLosses;
+        this.goalsScored = goalsScored;
+        this.goalsConceded = goalsConceded;
+    }
 
     public Integer getRating(){
         return rating;
@@ -29,7 +44,7 @@ public class Team {
     }
 
     public Integer getGoalDifference(){
-        return goalScored - goalsConceded;
+        return goalsScored - goalsConceded;
     }
 
     public Integer getRanking(){
