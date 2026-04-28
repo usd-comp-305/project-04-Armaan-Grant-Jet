@@ -1,5 +1,7 @@
 package edu.sandiego.comp305;
 
+import java.util.ArrayList;
+
 import java.util.List;
 
 public class Bracket {
@@ -11,7 +13,7 @@ public class Bracket {
 
     public Bracket(final List<Team> teams, final int round,
                    final PredictionStrategy strategy){
-        this.teams = teams;
+        this.teams = new ArrayList<>(teams);
         this.round = round;
         this.strategy = strategy;
     }
