@@ -25,11 +25,11 @@ public class Team {
     }
 
     public Double getWinRate(){
-        return 0.0;
+        return (double) totalWins / totalGames;
     }
 
     public Integer getGoalDifference(){
-        return 0;
+        return goalScored - goalsConceded;
     }
 
     public Integer getRanking(){
@@ -44,4 +44,7 @@ public class Team {
         return countryCode;
     }
 
+    public Integer getTotalLosses(){
+        return totalLosses;
+    }
 }
