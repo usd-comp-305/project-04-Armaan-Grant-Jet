@@ -9,6 +9,13 @@ public class MatchResult {
 
     private boolean isDraw;
 
+    public MatchResult(Team winner, int goalsA, int goalsB, boolean isDraw){
+        this.winner = winner;
+        this.goalsA = goalsA;
+        this.goalsB = goalsB;
+        this.isDraw = isDraw;
+    }
+
     public Team getWinner(){
         return winner;
     }
