@@ -19,9 +19,11 @@ public class Team {
 
     private final int goalsConceded;
 
-    public Team(final int ranking, final String countryName, final String countryCode,
-                final int rating, final int totalGames, final int totalWins,
-                final int totalLosses, final int goalsScored, final int goalsConceded){
+    public Team(final int ranking, final String countryName,
+                final String countryCode, final int rating,
+                final int totalGames, final int totalWins,
+                final int totalLosses, final int goalsScored,
+                final int goalsConceded){
         this.ranking = ranking;
         this.countryName = countryName;
         this.countryCode = countryCode;
