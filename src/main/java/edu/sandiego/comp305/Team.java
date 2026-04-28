@@ -15,10 +15,22 @@ public class Team {
 
     private int totalLosses;
 
-    private int goalScored;
+    private int goalsScored;
 
     private int goalsConceded;
 
+    public Team(int ranking, String countryName, String countryCode, int rating, int totalGames, int totalWins,
+                int totalLosses, int goalsScored, int goalsConceded){
+        this.ranking = ranking;
+        this.countryName = countryName;
+        this.countryCode = countryCode;
+        this.rating = rating;
+        this.totalGames = totalGames;
+        this.totalWins = totalWins;
+        this.totalLosses = totalLosses;
+        this.goalsScored = goalsScored;
+        this.goalsConceded = goalsConceded;
+    }
 
     public Integer getRating(){
         return rating;
@@ -29,7 +41,7 @@ public class Team {
     }
 
     public Integer getGoalDifference(){
-        return goalScored - goalsConceded;
+        return goalsScored - goalsConceded;
     }
 
     public Integer getRanking(){
