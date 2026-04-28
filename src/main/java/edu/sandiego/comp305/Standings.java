@@ -1,15 +1,19 @@
 package edu.sandiego.comp305;
 
 public class Standings {
-    private Team team;
-    private int points;
-    private int goalDiff;
-    private int goalsFor;
-    private int goalsAgainst;
+    private final Team team;
 
-    public Standings(Team team, int points,
-                     int goalDiff, int goalsFor,
-                     int goalsAgainst){
+    private final int points;
+
+    private final int goalDiff;
+
+    private final int goalsFor;
+
+    private final int goalsAgainst;
+
+    public Standings(final Team team, final int points,
+                     final int goalDiff, final int goalsFor,
+                     final int goalsAgainst){
         this.team = team;
         this.points = points;
         this.goalDiff = goalDiff;
@@ -17,7 +21,7 @@ public class Standings {
         this.goalsAgainst = goalsAgainst;
     }
 
-    public void addResult(MatchResult matchResult){
+    public void addResult(final MatchResult matchResult){
     }
 
     public Integer getPoints(){
