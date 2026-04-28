@@ -1,5 +1,8 @@
 package edu.sandiego.comp305;
+
 import java.util.List;
+
+import java.util.ArrayList;
 
 public class Group {
     private final String name;
@@ -11,8 +14,8 @@ public class Group {
     public Group(final String name, final List<Team> teams,
                  final List<Standings> standings){
         this.name = name;
-        this.teams = teams;
-        this.standings = standings;
+        this.teams = new ArrayList<>(teams);
+        this.standings = new ArrayList<>(standings);
     }
 
     public void playGroupStage(){
