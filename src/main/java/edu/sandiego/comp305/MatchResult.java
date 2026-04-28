@@ -1,15 +1,15 @@
 package edu.sandiego.comp305;
 
 public class MatchResult {
-    private Team winner;
+    private final Team winner;
 
-    private int goalsA;
+    private final int goalsA;
 
-    private int goalsB;
+    private final int  goalsB;
 
-    private boolean isDraw;
+    private final boolean isDraw;
 
-    public MatchResult(Team winner, int goalsA, int goalsB, boolean isDraw){
+    public MatchResult(final Team winner, final int goalsA, final int goalsB, final boolean isDraw){
         this.winner = winner;
         this.goalsA = goalsA;
         this.goalsB = goalsB;
