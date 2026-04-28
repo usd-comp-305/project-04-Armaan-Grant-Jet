@@ -1,0 +1,98 @@
+@startuml UML
+interface PredictionStrategy {
+    getProbability(a: Team, b: Team) : double
+}
+class EloStrategy {
+    getProbability(a: Team, b: Team) : double
+}
+class CSVLoader {
+    filePath : String
+    loadTeams() : List<Team>
+}
+class Team {
+    ranking : int
+    countryName : String
+    countryCode : String
+    rating : int
+    totalGames : int 
+    totalWins : int
+    totalLosses : int
+    goalScored : int 
+    goalsConceded : int 
+    getRating() : int
+    getWinRate() : double
+    getGoalDifference() : int
+}
+class Match {
+    teamA : Team
+    teamB : Team
+    strategy : PredictionStrategy
+    play() : MatchResults
+}
+class MatchResults {
+    winner : Team
+    scoreA : int
+    scoreB : int
+    getWinner() : Team
+}
+class Standings {
+    team : Team
+    points : int
+    addResults(result: MatchResults) : void
+    getPoints() : int
+}
+class Group {
+    groupName : String
+    teams: List<Team>
+    playGroupStage() : void
+    getQualifiers() : List<Team>
+}
+class Bracket {
+    teams: List<Team>
+    strategy : PredictionStrategy
+    playRound() : List<Team>
+    getWinner() : Team
+}
+class Tournament {
+    groups : List<Group>
+    bracket : Bracket
+    runGroupStage() : void
+    makeBracket() : void
+    runKnockOutStage() : Team
+}
+class Simulator {
+    tournament : Tournament
+    loader : CSVLoader
+    runSimulations(numOfSim : int) : void
+}
+class SimulatorResults {
+    winCount : Map<Team, Integer>
+    totalSimulations : int
+    recordWin(team: Team) : void
+    getWinProbability(team: Team) : double
+}
+
+'Relationships
+EloStrategy ..|> PredictionStrategy
+
+CSVLoader ..> Team : creates
+
+Match --> Team
+Match --> PredictionStrategy
+Match --> MatchResults
+
+Standings --> Team
+
+Group *-- Team
+Group *-- Standings
+
+Bracket --> PredictionStrategy
+Bracket o-- Team
+
+Tournament *-- Group
+Tournament *-- Bracket
+
+Simulator *-- Tournament
+Simulator ..> CSVLoader
+
+@enduml 
