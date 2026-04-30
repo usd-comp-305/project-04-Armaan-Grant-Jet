@@ -1,14 +1,10 @@
 package edu.sandiego.comp305;
 
 import java.util.List;
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class CSVLoader {
 
-    private final static int COLUMNS = 9;
+    private static final int COLUMNS = 9;
 
     private final String filePath;
 
@@ -30,7 +26,8 @@ public class CSVLoader {
             }
 
             return new Team(
-                Integer.parseInt(parts[0].trim()), parts[1].trim(), parts[2].trim(),
+                Integer.parseInt(parts[0].trim()), 
+                parts[1].trim(), parts[2].trim(),
                 Integer.parseInt(parts[3].trim()),
                 Integer.parseInt(parts[4].trim()),
                 Integer.parseInt(parts[5].trim()),
