@@ -31,15 +31,18 @@ public class EloStrategy implements PredictionStrategy {
         final double goalDiffProbability = goalDiff(home, away);
         final double defenseAttProbability = defenseAtt(home, away);
 
-        return WEIGHT_ELO * eloProbability + WEIGHT_WINRATE * winRateProbability
-        + WEIGHT_GOALDIFF * goalDiffProbability + WEIGHT_DEFENSE_ATT * defenseAttProbability;
+        return WEIGHT_ELO * eloProbability 
+        + WEIGHT_WINRATE * winRateProbability
+        + WEIGHT_GOALDIFF * goalDiffProbability 
+        + WEIGHT_DEFENSE_ATT * defenseAttProbability;
     }
 
     private double elo(final Team home, final Team away) {
         // Calculating home's team probability
         final double ratingDiff = away.getRating() - home.getRating();
 
-        return 1.0 / (1.0 + Math.pow(ELO_BASE, ratingDiff / ELO_SCALE));
+        return 1.0 / (1.0 + Math.pow(
+            ELO_BASE, ratingDiff / ELO_SCALE));
     }
 
     private double winRate(final Team home, final Team away) {
@@ -54,19 +57,23 @@ public class EloStrategy implements PredictionStrategy {
     }
 
     private double goalDiff(final Team home, final Team away) {
-        final double homeGoalDiff = home.getGoalDifference() / 
-        (double) home.getTotalGames() + GOALDIFF_SHIFT;
-        final double awayGoalDiff = away.getGoalDifference() / 
-        (double) away.getTotalGames() + GOALDIFF_SHIFT;
+        final double homeGoalDiff = 
+        home.getGoalDifference() / (double) home.getTotalGames() 
+        + GOALDIFF_SHIFT;
+        final double awayGoalDiff = 
+        away.getGoalDifference() / (double) away.getTotalGames() 
+        + GOALDIFF_SHIFT;
 
         return homeGoalDiff / (homeGoalDiff + awayGoalDiff);
     }
 
     private double defenseAtt(final Team home, final Team away) {
         final double homeGoalsConcededPerGame =
-        home.getGoalsAgainst() / (double) home.getTotalGames() + EPSILON;
+        home.getGoalsAgainst() / (double) home.getTotalGames() 
+        + EPSILON;
         final double awayGoalsConcededPerGame = 
-        away.getGoalsAgainst() / (double) away.getTotalGames() + EPSILON;
+        away.getGoalsAgainst() / (double) away.getTotalGames() 
+        + EPSILON;
         final double invertedHome = 1.0 / homeGoalsConcededPerGame;
         final double invertedAway = 1.0 / awayGoalsConcededPerGame;
 
