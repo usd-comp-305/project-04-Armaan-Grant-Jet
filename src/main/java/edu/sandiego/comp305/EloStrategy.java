@@ -36,7 +36,7 @@ public class EloStrategy implements PredictionStrategy {
     }
 
     private double elo(final Team home, final Team away) {
-        // Caculating home's team probability
+        // Calculating home's team probability
         final double ratingDiff = away.getRating() - home.getRating();
 
         return 1.0 / (1.0 + Math.pow(ELO_BASE, ratingDiff / ELO_SCALE));
