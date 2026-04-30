@@ -54,7 +54,8 @@ public class EloStrategyTest {
         final Team noGoalsConceded = new Team(
             1, "noGoalsConceded", "NC", 
             1800, 100, 50, 25, 130, 0);
-        final double probability = strategy.getProbability(noGoalsConceded, equalTeamA);
+        final double probability = 
+            strategy.getProbability(noGoalsConceded, equalTeamA);
 
         assertFalse(Double.isNaN(probability));
     }

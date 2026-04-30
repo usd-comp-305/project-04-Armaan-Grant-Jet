@@ -32,9 +32,9 @@ public class EloStrategy implements PredictionStrategy {
         final double defenseAttProbability = defenseAtt(home, away);
 
         return WEIGHT_ELO * eloProbability 
-        + WEIGHT_WINRATE * winRateProbability
-        + WEIGHT_GOALDIFF * goalDiffProbability 
-        + WEIGHT_DEFENSE_ATT * defenseAttProbability;
+            + WEIGHT_WINRATE * winRateProbability
+            + WEIGHT_GOALDIFF * goalDiffProbability 
+            + WEIGHT_DEFENSE_ATT * defenseAttProbability;
     }
 
     private double elo(final Team home, final Team away) {
