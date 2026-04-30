@@ -2,6 +2,15 @@ package edu.sandiego.comp305;
 
 import java.util.List;
 
+import java.util.ArrayList;
+
+import java.io.BufferedReader;
+
+import java.io.FileReader;
+
+import java.io.IOException;
+
+
 public class CSVLoader {
 
     private static final int COLUMS_OF_FILE = 9;
@@ -14,7 +23,25 @@ public class CSVLoader {
     }
 
     public List<Team> loadTeams() {
-        return null;
+        final List<Team> teams = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            String line = reader.readLine();
+
+            while ((line = reader.readLine()) != null){
+                line = line.trim();
+                if (line.isEmpty()){
+                    continue;
+                }
+                final Team team = parseLine(line);
+                if(team != null){
+                    teams.add(team);
+                }
+            }
+        }catch (IOException e){
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+        return teams;
     }
 
     private Team parseLine(final String line) {
