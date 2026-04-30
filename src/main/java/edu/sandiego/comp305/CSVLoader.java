@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CSVLoader {
 
-    private static final int COLUMNS = 9;
+    private static final int COLUMS_OF_FILE = 9;
 
     private final String filePath;
 
@@ -20,7 +20,7 @@ public class CSVLoader {
     private Team parseLine(final String line) {
         try {
             final String[] parts = line.split(",");
-            if (parts.length < COLUMNS) {
+            if (parts.length < COLUMS_OF_FILE) {
                 System.out.println("Warning: skipping bad row: " + line);
                 return null;
             }
