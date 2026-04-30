@@ -58,22 +58,22 @@ public class EloStrategy implements PredictionStrategy {
 
     private double goalDiff(final Team home, final Team away) {
         final double homeGoalDiff = 
-        home.getGoalDifference() / (double) home.getTotalGames() 
-        + GOALDIFF_SHIFT;
+            home.getGoalDifference() / (double) home.getTotalGames() 
+            + GOALDIFF_SHIFT;
         final double awayGoalDiff = 
-        away.getGoalDifference() / (double) away.getTotalGames() 
-        + GOALDIFF_SHIFT;
+            away.getGoalDifference() / (double) away.getTotalGames() 
+            + GOALDIFF_SHIFT;
 
         return homeGoalDiff / (homeGoalDiff + awayGoalDiff);
     }
 
     private double defenseAtt(final Team home, final Team away) {
         final double homeGoalsConcededPerGame =
-        home.getGoalsAgainst() / (double) home.getTotalGames() 
-        + EPSILON;
+            home.getGoalsAgainst() / (double) home.getTotalGames() 
+            + EPSILON;
         final double awayGoalsConcededPerGame = 
-        away.getGoalsAgainst() / (double) away.getTotalGames() 
-        + EPSILON;
+            away.getGoalsAgainst() / (double) away.getTotalGames() 
+            + EPSILON;
         final double invertedHome = 1.0 / homeGoalsConcededPerGame;
         final double invertedAway = 1.0 / awayGoalsConcededPerGame;
 

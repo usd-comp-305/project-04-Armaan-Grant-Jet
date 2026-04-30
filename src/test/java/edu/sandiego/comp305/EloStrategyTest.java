@@ -37,7 +37,7 @@ public class EloStrategyTest {
     @Test
     void getResultIsBetweenZeonAndOne() {
         final double probability = 
-        strategy.getProbability(strongTeam, weakTeam);
+            strategy.getProbability(strongTeam, weakTeam);
 
         assertTrue(probability >= 0.0 
             && probability <= 1.0);
@@ -54,9 +54,9 @@ public class EloStrategyTest {
         final Team noGoalsConceded = new Team(
             1, "noGoalsConceded", "NC", 
             1800, 100, 50, 25, 130, 0);
+        final double probability = strategy.getProbability(noGoalsConceded, equalTeamA);
 
-        strategy.getProbability(
-            noGoalsConceded, equalTeamA);
+        assertFalse(Double.isNaN(probability));
     }
 
     @Test
@@ -64,8 +64,9 @@ public class EloStrategyTest {
         final Team noWins = new Team(
             1, "noWins", "NW", 
             1800, 100, 0, 65, 80, 150);
+        final double probability = strategy.getProbability(noWins, equalTeamA);
 
-        strategy.getProbability(noWins, equalTeamA);
+        assertFalse(Double.isNaN(probability));
     }
 
     @Test
@@ -77,7 +78,7 @@ public class EloStrategyTest {
             2, "Mid", "M", 
             800, 100, 10, 70, 50, 200);
         final double probability = 
-        strategy.getProbability(elite, mid);
+            strategy.getProbability(elite, mid);
 
         assertTrue(probability >= 0.0 
             && probability <= 1.0);
