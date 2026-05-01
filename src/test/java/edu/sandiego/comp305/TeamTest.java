@@ -45,4 +45,28 @@ public class TeamTest {
         Team team = new Team(2, "France", "FRA", 2050, 90, 60, 15, 180, 70);
         assertEquals(110, team.getGoalDifference());
     }
+
+    @Test
+    void teamHasNegativeGoalDifference() {
+        Team team = new Team(2, "France", "FRA", 2050, 90, 60, 15, 50, 120);
+        assertEquals(-70, team.getGoalDifference());
+    }
+
+    @Test
+    void teamHasZeroGoalDifference() {
+        Team team = new Team(2, "France", "FRA", 2050, 90, 60, 15, 100, 100);
+        assertEquals(0, team.getGoalDifference());
+    }
+
+    @Test
+    void teamHasWinRateOfOne() {
+        Team team = new Team(2, "France", "FRA", 2050, 90, 90, 0, 180, 70);
+        assertEquals(1.0, team.getWinRate(), 0.001);
+    }
+
+    @Test
+    void teamHasWinRateOfZero() {
+        Team team = new Team(2, "France", "FRA", 2050, 90, 0, 90, 180, 70);
+        assertEquals(0.0, team.getWinRate(), 0.001);
+    }
 }
