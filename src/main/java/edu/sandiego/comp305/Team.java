@@ -35,8 +35,36 @@ public class Team {
         this.goalsConceded = goalsConceded;
     }
 
+    public Integer getRanking(){
+        return ranking;
+    }
+    
+    public String getCountryName(){
+        return countryName;
+    }
+    
+    public String getCountryCode(){
+        return countryCode;
+    }
+
     public Integer getRating(){
         return rating;
+    }
+
+    public Integer getTotalGames(){
+        return totalGames;
+    }
+    
+    public Integer getTotalLosses(){
+        return totalLosses;
+    }
+
+    public Integer getGoalsFor(){
+        return goalsScored;
+    }
+
+    public Integer getGoalsAgainst(){
+        return goalsConceded;
     }
 
     public Double getWinRate(){
@@ -47,19 +75,4 @@ public class Team {
         return goalsScored - goalsConceded;
     }
 
-    public Integer getRanking(){
-        return ranking;
-    }
-
-    public String getCountryName(){
-        return countryName;
-    }
-
-    public String getCountryCode(){
-        return countryCode;
-    }
-
-    public Integer getTotalLosses(){
-        return totalLosses;
-    }
 }
