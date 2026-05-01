@@ -18,25 +18,31 @@ public class StandingsTest {
 
     @Test
     void standingsStartWithZeroPoints() {
-        final Standings entry = new Standings(france);
-        assertEquals(0, entry.getPoints());
+        final Standings standings = new Standings(france);
+        assertEquals(0, standings.getPoints());
     }
 
     @Test
     void standingsStartWithZeroGoalsFor() {
-        final Standings entry = new Standings(france);
-        assertEquals(0, entry.getGoalsFor());
+        final Standings standings = new Standings(france);
+        assertEquals(0, .getGoalsFor());
     }
 
     @Test
     void standingsStartWithZeroGoalsAgainst() {
-        final Standings entry = new Standings(france);
-        assertEquals(0, entry.getGoalsAgainst());
+        final Standings standings = new Standings(france);
+        assertEquals(0, standings.getGoalsAgainst());
     }
 
     @Test
     void standingsStartWithZeroGoalDiff() {
+        final Standings standings = new Standings(france);
+        assertEquals(0, standings.getGoalDiff());
+    }
+    
+    @Test
+    void standingsReturnCorrectTeam() {
         final Standings entry = new Standings(france);
-        assertEquals(0, entry.getGoalDiff());
+        assertEquals(france, entry.getTeam());
     }
 }
