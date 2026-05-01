@@ -25,7 +25,7 @@ public class StandingsTest {
     @Test
     void standingsStartWithZeroGoalsFor() {
         final Standings standings = new Standings(france);
-        assertEquals(0, .getGoalsFor());
+        assertEquals(0, standings.getGoalsFor());
     }
 
     @Test
@@ -44,5 +44,14 @@ public class StandingsTest {
     void standingsReturnCorrectTeam() {
         final Standings entry = new Standings(france);
         assertEquals(france, entry.getTeam());
+    }
+
+    @Test
+    void winAddsThreePoints() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, france,
+                3, 1, false);
+        standings.addResult(result);
+        assertEquals(3, standings.getPoints());
     }
 }
