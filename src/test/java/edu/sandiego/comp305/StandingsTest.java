@@ -117,4 +117,32 @@ public class StandingsTest {
         standings.addResult(result);
         assertEquals(-2, standings.getGoalDiff());
     }
+
+    @Test
+    void drawAddsOnePoint() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, france,
+                1, 1, true);
+        standings.addResult(result);
+        assertEquals(1, standings.getPoints());
+    }
+
+    @Test
+    void drawUpdatesGoals() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, france,
+                1, 1, true);
+        standings.addResult(result);
+        assertEquals(1, standings.getGoalsFor());
+        assertEquals(1, standings.getGoalsAgainst());
+    }
+
+    @Test
+    void drawProducesZeroGoalDiff() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, france,
+                1, 1, true);
+        standings.addResult(result);
+        assertEquals(0, standings.getGoalDiff());
+    }
 }
