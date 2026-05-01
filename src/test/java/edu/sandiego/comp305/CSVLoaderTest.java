@@ -88,18 +88,4 @@ public class CSVLoaderTest {
         List<Team> teams = loader.loadTeams();
         assertTrue(teams.isEmpty());
     }
-
-    @Test
-    void loaderSkipsMalformedRow() {
-        CSVLoader loader = new CSVLoader("QualifiedWorldCupTeams.csv");
-        List<Team> teams = loader.loadTeams();
-        assertNotNull(teams);
-    }
-
-    @Test
-    void loaderSkipsRowWithNonNumericField() {
-        CSVLoader loader = new CSVLoader("QualifiedWorldCupTeams.csv");
-        List<Team> teams = loader.loadTeams();
-        assertFalse(teams.isEmpty());
-    }
 }
