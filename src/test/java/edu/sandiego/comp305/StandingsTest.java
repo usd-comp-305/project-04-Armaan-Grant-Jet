@@ -54,4 +54,31 @@ public class StandingsTest {
         standings.addResult(result);
         assertEquals(3, standings.getPoints());
     }
+
+    @Test
+    void winUpdatesGoalsFor() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, france,
+                3, 1, false);
+        standings.addResult(result);
+        assertEquals(3, standings.getGoalsFor());
+    }
+
+    @Test
+    void winUpdatesGoalsAgainst() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, france,
+                3, 1, false);
+        standings.addResult(result);
+        assertEquals(3, standings.getGoalsAgainst());
+    }
+
+    @Test
+    void winProducesPositiveGoalDiff() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, france,
+                3, 1, false);
+        standings.addResult(result);
+        assertEquals(2, standings.getGoalDiff());
+    }
 }
