@@ -21,4 +21,10 @@ public class TeamTest {
         Team team = new Team(3, "France", "FRA", 2050, 90, 60, 15, 180, 70);
         assertEquals(3, team.getRanking());
     }
+
+    @Test
+    void teamHasCorrectRating() {
+        Team team = new Team(3, "France", "FRA", 2050, 90, 60, 15, 180, 70);
+        assertEquals(2050, team.getRating());
+    }
 }
