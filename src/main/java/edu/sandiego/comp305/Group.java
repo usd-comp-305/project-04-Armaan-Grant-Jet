@@ -29,11 +29,20 @@ public class Group {
     }
 
     public List<Standings> getStandings(){
-        return null;
+        final List<Standings> sorted = new ArrayList<>(standings);
+        sorted.sort((teamA, teamB) -> {
+            if (teamB.getPoints() != teamA.getPoints()) {
+                return teamB.getPoints() - teamA.getPoints();
+            }
+            if (teamB.getGoalDiff() != teamA.getGoalDiff()) {
+                return teamB.getGoalDiff() - teamA.getGoalDiff();
+            }
+            return teamB.getGoalsFor() - teamA.getGoalsFor();
+        });
+        return sorted;
     }
 
     public String getName(){
         return name;
     }
 }
-
