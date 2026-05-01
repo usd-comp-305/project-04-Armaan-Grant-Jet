@@ -70,7 +70,7 @@ public class StandingsTest {
         final MatchResult result = new MatchResult(france, spain, france,
                 3, 1, false);
         standings.addResult(result);
-        assertEquals(3, standings.getGoalsAgainst());
+        assertEquals(1, standings.getGoalsAgainst());
     }
 
     @Test
@@ -80,5 +80,41 @@ public class StandingsTest {
                 3, 1, false);
         standings.addResult(result);
         assertEquals(2, standings.getGoalDiff());
+    }
+
+    @Test
+    void lossAddsZeroPoints() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, spain,
+                0, 2, false);
+        standings.addResult(result);
+        assertEquals(0, standings.getPoints());
+    }
+
+    @Test
+    void lossUpdatesGoalsFor() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, spain,
+                0, 2, false);
+        standings.addResult(result);
+        assertEquals(0, standings.getGoalsFor());
+    }
+
+    @Test
+    void lossUpdatesGoalsAgainst() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, spain,
+                0, 2, false);
+        standings.addResult(result);
+        assertEquals(2, standings.getGoalsAgainst());
+    }
+
+    @Test
+    void lossProducesNegativeGoalDiff() {
+        final Standings standings = new Standings(france);
+        final MatchResult result = new MatchResult(france, spain, spain,
+                0, 2, false);
+        standings.addResult(result);
+        assertEquals(-2, standings.getGoalDiff());
     }
 }
