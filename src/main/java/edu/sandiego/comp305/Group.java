@@ -7,13 +7,10 @@ public class Group {
     private final String name;
     private final List<Team> teams;
     private final List<Standings> standings;
-    private final PredictionStrategy strategy;
 
-    public Group(final String name, final List<Team> teams,
-                 final PredictionStrategy strategy){
+    public Group(final String name, final List<Team> teams){
         this.name = name;
         this.teams = new ArrayList<>(teams);
-        this.strategy = strategy;
         this.standings = new ArrayList<>();
         for (final Team team : teams) {
             standings.add(new Standings(team));
@@ -21,7 +18,7 @@ public class Group {
     }
 
     public void playGroupStage(){
-
+        //will implement when Match.play() is created
     }
 
     public List<Team> getQualifiers(){

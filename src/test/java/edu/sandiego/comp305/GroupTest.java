@@ -10,7 +10,7 @@ public class GroupTest {
     private Team france;
     private Team brazil;
     private Team argentina;
-    private PredictionStrategy strategy;
+    private Prediction ;
 
     @BeforeEach
     void setUp() {
@@ -22,27 +22,26 @@ public class GroupTest {
                 2082, 938, 474, 269, 1706, 1272);
         brazil = new Team(5, "Brazil", "BR",
                 1984, 1065, 670, 172, 2294, 954);
-        strategy = new EloStrategy();
     }
 
     @Test
     void groupHasCorrectName() {
         final Group group = new Group("A",
-                List.of(spain, france, brazil, argentina), strategy);
+                List.of(spain, france, brazil, argentina));
         assertEquals("A", group.getName());
     }
 
     @Test
     void groupCreatesStandingsForEachTeam() {
         final Group group = new Group("A",
-                List.of(spain, france, brazil, argentina), strategy);
+                List.of(spain, france, brazil, argentina));
         assertEquals(4, group.getStandings().size());
     }
 
     @Test
     void standingsContainAllTeams() {
         final Group group = new Group("A",
-                List.of(spain, france, brazil, argentina), strategy);
+                List.of(spain, france, brazil, argentina));
         final List<Team> teamsInStandings = group.getStandings()
                 .stream().map(Standings::getTeam).toList();
         assertTrue(teamsInStandings.contains(spain));
@@ -54,7 +53,7 @@ public class GroupTest {
     @Test
     void standingsStartWithZeroPoints() {
         final Group group = new Group("A",
-                List.of(spain, france, brazil, argentina), strategy);
+                List.of(spain, france, brazil, argentina));
         for (final Standings s : group.getStandings()) {
             assertEquals(0, s.getPoints());
         }
@@ -63,14 +62,14 @@ public class GroupTest {
     @Test
     void getStandingsReturnsFourStandings() {
         final Group group = new Group("A",
-                List.of(spain, france, brazil, argentina), strategy);
+                List.of(spain, france, brazil, argentina));
         assertEquals(4, group.getStandings().size());
     }
 
     @Test
     void getQualifiersReturnsTwoTeams() {
         final Group group = new Group("A",
-                List.of(spain, france, brazil, argentina), strategy);
+                List.of(spain, france, brazil, argentina));
         assertEquals(2, group.getQualifiers().size());
     }
 }
