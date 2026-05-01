@@ -60,5 +60,10 @@ public class GroupTest {
         }
     }
 
-
+    @Test
+    void getStandingsReturnsFourStandings() {
+        final Group group = new Group("A",
+                List.of(spain, france, brazil, argentina), strategy);
+        assertEquals(4, group.getStandings().size());
+    }
 }
