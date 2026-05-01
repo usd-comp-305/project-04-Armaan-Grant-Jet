@@ -4,13 +4,18 @@ public class Standings {
     private final Team team;
 
     private int points;
+
     private int goalsFor;
+
     private int goalsAgainst;
 
     public Standings(final Team team){
         this.team = team;
+
         this.points = 0;
+
         this.goalsFor = 0;
+
         this.goalsAgainst = 0;
     }
 
@@ -49,3 +54,4 @@ public class Standings {
         return team;
     }
 }
+

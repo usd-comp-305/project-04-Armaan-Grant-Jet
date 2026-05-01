@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StandingsTest {
     private Team france;
+
     private Team spain;
 
     @BeforeEach

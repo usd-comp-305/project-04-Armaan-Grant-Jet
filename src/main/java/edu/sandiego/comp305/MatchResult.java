@@ -13,8 +13,9 @@ public class MatchResult {
 
     private final boolean isDraw;
 
-    public MatchResult(final Team homeTeam, final Team awayTeam, final Team winner,
-                       final int homeGoals, final int AwayGoals, final boolean isDraw){
+    public MatchResult(final Team homeTeam, final Team awayTeam,
+                       final Team winner, final int homeGoals,
+                       final int AwayGoals, final boolean isDraw){
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.winner = winner;

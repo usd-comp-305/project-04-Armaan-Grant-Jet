@@ -7,8 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GroupTest {
     private Team spain;
+
     private Team france;
+
     private Team brazil;
+
     private Team argentina;
 
     @BeforeEach
@@ -72,3 +75,4 @@ public class GroupTest {
         assertEquals(2, group.getQualifiers().size());
     }
 }
+
