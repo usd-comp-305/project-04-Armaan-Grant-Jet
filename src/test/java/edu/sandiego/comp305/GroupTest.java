@@ -66,4 +66,11 @@ public class GroupTest {
                 List.of(spain, france, brazil, argentina), strategy);
         assertEquals(4, group.getStandings().size());
     }
+
+    @Test
+    void getQualifiersReturnsTwoTeams() {
+        final Group group = new Group("A",
+                List.of(spain, france, brazil, argentina), strategy);
+        assertEquals(2, group.getQualifiers().size());
+    }
 }
