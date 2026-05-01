@@ -10,7 +10,6 @@ public class GroupTest {
     private Team france;
     private Team brazil;
     private Team argentina;
-    private Prediction ;
 
     @BeforeEach
     void setUp() {
