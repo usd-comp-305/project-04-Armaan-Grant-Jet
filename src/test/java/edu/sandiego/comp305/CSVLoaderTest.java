@@ -72,14 +72,14 @@ public class CSVLoaderTest {
     void firstTeamHasCorrectGoalsScored() {
         CSVLoader loader = new CSVLoader("QualifiedWorldCupTeams.csv");
         List<Team> teams = loader.loadTeams();
-        assertEquals(1591, teams.get(0).getGoalsScored());
+        assertEquals(1591, teams.get(0).getGoalsFor());
     }
 
     @Test
     void firstTeamHasCorrectGoalsConceded() {
         CSVLoader loader = new CSVLoader("QualifiedWorldCupTeams.csv");
         List<Team> teams = loader.loadTeams();
-        assertEquals(697, teams.get(0).getGoalsConceded());
+        assertEquals(697, teams.get(0).getGoalsAgainst());
     }
 
     @Test

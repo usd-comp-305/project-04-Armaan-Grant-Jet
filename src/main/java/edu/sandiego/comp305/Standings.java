@@ -15,12 +15,12 @@ public class Standings {
     }
 
     public void addResult(final MatchResult matchResult) {
-        if (matchResult.getTeamA().equals(team)) {
-            this.goalsFor += matchResult.getGoalsA();
-            this.goalsAgainst += matchResult.getGoalsB();
+        if (matchResult.getHomeTeam().equals(team)) {
+            this.goalsFor += matchResult.getHomeGoals();
+            this.goalsAgainst += matchResult.getAwayGoals();
         } else {
-            this.goalsFor += matchResult.getGoalsB();
-            this.goalsAgainst += matchResult.getGoalsA();
+            this.goalsFor += matchResult.getAwayGoals();
+            this.goalsAgainst += matchResult.getHomeGoals();
         }
         if (matchResult.getIsDraw()) {
             this.points += 1;
