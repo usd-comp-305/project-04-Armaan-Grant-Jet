@@ -15,4 +15,10 @@ public class TeamTest {
         Team team = new Team(3, "France", "FRA", 2050, 90, 60, 15, 180, 70);
         assertEquals("FRA", team.getCountryCode());
     }
+
+    @Test
+    void teamHasCorrectRanking() {
+        Team team = new Team(3, "France", "FRA", 2050, 90, 60, 15, 180, 70);
+        assertEquals(3, team.getRanking());
+    }
 }
