@@ -46,5 +46,5 @@ def build_final_qualified_teams_dataframe():
 if __name__ == "__main__":
     final_dataframe = build_final_qualified_teams_dataframe()
     print(final_dataframe)
-    #final_dataframe.to_csv("QualifiedWorldCupTeams.csv", index=False)
+    final_dataframe.to_csv("QualifiedWorldCupTeams.csv", index=False)
 

@@ -62,4 +62,20 @@ public class Team {
     public Integer getTotalLosses(){
         return totalLosses;
     }
+
+    public Integer getTotalGames(){
+        return totalGames;
+    }
+
+    public Integer getTotalWins(){
+        return totalWins;
+    }
+
+    public Integer getGoalsScored(){
+        return goalsScored;
+    }
+
+    public Integer getGoalsConceded(){
+        return goalsConceded;
+    }
 }

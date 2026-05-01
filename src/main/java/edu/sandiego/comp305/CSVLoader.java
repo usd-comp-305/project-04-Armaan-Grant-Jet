@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVLoader {
-
     private static final int COLUMS_OF_FILE = 9;
 
     private final String filePath;
