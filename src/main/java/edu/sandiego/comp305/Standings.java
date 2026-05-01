@@ -3,25 +3,30 @@ package edu.sandiego.comp305;
 public class Standings {
     private final Team team;
 
-    private final int points;
+    private int points;
+    private int goalsFor;
+    private int goalsAgainst;
 
-    private final int goalDiff;
-
-    private final int goalsFor;
-
-    private final int goalsAgainst;
-
-    public Standings(final Team team, final int points,
-                     final int goalDiff, final int goalsFor,
-                     final int goalsAgainst){
+    public Standings(final Team team){
         this.team = team;
-        this.points = points;
-        this.goalDiff = goalDiff;
-        this.goalsFor = goalsFor;
-        this.goalsAgainst = goalsAgainst;
+        this.points = 0;
+        this.goalsFor = 0;
+        this.goalsAgainst = 0;
     }
 
-    public void addResult(final MatchResult matchResult){
+    public void addResult(final MatchResult matchResult) {
+        if (matchResult.getTeamA().equals(team)) {
+            this.goalsFor += matchResult.getGoalsA();
+            this.goalsAgainst += matchResult.getGoalsB();
+        } else {
+            this.goalsFor += matchResult.getGoalsB();
+            this.goalsAgainst += matchResult.getGoalsA();
+        }
+        if (matchResult.getIsDraw()) {
+            this.points += 1;
+        } else if (matchResult.getWinner().equals(team)) {
+            this.points += 3;
+        }
     }
 
     public Integer getPoints(){
@@ -29,7 +34,7 @@ public class Standings {
     }
 
     public Integer getGoalDiff(){
-        return goalDiff;
+        return goalsFor - goalsAgainst;
     }
 
     public Integer getGoalsFor(){
@@ -43,5 +48,4 @@ public class Standings {
     public Team getTeam(){
         return team;
     }
-
 }
