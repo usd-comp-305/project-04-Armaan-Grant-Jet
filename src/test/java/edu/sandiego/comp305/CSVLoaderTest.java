@@ -16,7 +16,7 @@ public class CSVLoaderTest {
     void loaderReturnsCorrectNumberOfTeams() {
         final CSVLoader loader =new CSVLoader("data/test_teams.csv");
         final List<Team> teams = loader.loadTeams();
-        assertEquals(47, teams.size());
+        assertEquals(48, teams.size());
     }
 
     @Test
