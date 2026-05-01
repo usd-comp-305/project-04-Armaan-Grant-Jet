@@ -25,7 +25,11 @@ public class Group {
     }
 
     public List<Team> getQualifiers(){
-        return null;
+        final List<Standings> sorted = getStandings();
+        final List<Team> qualifiers = new ArrayList<>();
+        qualifiers.add(sorted.get(0).getTeam());
+        qualifiers.add(sorted.get(1).getTeam());
+        return qualifiers;
     }
 
     public List<Standings> getStandings(){
