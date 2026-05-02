@@ -64,6 +64,14 @@ public class MatchTest {
         return new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
     }
 
+    private MatchResult playGroupMatch() {
+        return groupMatch().play();
+    }
+
+    private MatchResult playKnockoutMatch() {
+        return knockoutMatch().play();
+    }
+
     @Test
     void playNeverReturnsNull() {
         setHomeWin();
@@ -88,7 +96,7 @@ public class MatchTest {
     @Test
     void playHomeWinHomeGoalsGreaterThanAwayGoals() {
         setHomeWin();
-        final MatchResult result = groupMatch().play();
+        final MatchResult result = playGroupMatch();
 
         assertTrue(result.getHomeTeamGoals() > result.getAwayTeamGoals());
     }
@@ -110,8 +118,7 @@ public class MatchTest {
     @Test
     void playAwayWinAwayGoalsGreaterThanHomeGoals() {
         setAwayWin();
-        final MatchResult result = groupMatch().play();
-
+        final MatchResult result = playGroupMatch();
 
         assertTrue(result.getAwayTeamGoals() > result.getHomeTeamGoals());
     }
@@ -133,7 +140,7 @@ public class MatchTest {
     @Test
     void playGroupStageGoalsAreEqual() {
         setGroupStage();
-        final MatchResult result = groupMatch().play();
+        final MatchResult result = playGroupMatch();
 
         assertEquals(result.getHomeTeamGoals(), result.getAwayTeamGoals());
     }
@@ -162,7 +169,7 @@ public class MatchTest {
     @Test
     void playKnockoutStageGoalsAreEqual() {
         setKnockoutStageHomeWinsPenalties();
-        final MatchResult result = knockoutMatch().play();
+        final MatchResult result = playKnockoutMatch();
 
         assertEquals(result.getHomeTeamGoals(), result.getAwayTeamGoals());
     }
