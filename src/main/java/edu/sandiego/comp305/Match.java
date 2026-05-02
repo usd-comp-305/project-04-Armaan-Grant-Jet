@@ -22,8 +22,10 @@ public class Match {
 
     // Production constructor
     public Match(final Team homeTeam, final Team awayTeam, 
-        final PredictionStrategy strategy, final boolean isKnockout) {
-        this(homeTeam, awayTeam, strategy, isKnockout, new Random()::nextDouble);
+        final PredictionStrategy strategy, 
+        final boolean isKnockout) {
+        this(homeTeam, awayTeam, strategy, 
+            isKnockout, new Random()::nextDouble);
     }
     
     // Testable constructor
@@ -67,9 +69,11 @@ public class Match {
         } else {
             final int homeGoals = simulateGoals(BASE_GOALS * 0.8);
             final int awayGoals = simulateGoals(BASE_GOALS * 1.2);
-            final int guaranteedWinnerGoals = Math.max(awayGoals, homeGoals + 1);
+            final int guaranteedWinnerGoals = 
+                Math.max(awayGoals, homeGoals + 1);
 
-            return new MatchResult(awayTeam, homeGoals, guaranteedWinnerGoals, false);
+            return new MatchResult(awayTeam, 
+                homeGoals, guaranteedWinnerGoals, false);
         }
     }
 

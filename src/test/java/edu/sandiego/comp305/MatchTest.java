@@ -21,11 +21,12 @@ public class MatchTest {
     private PredictionStrategy mockStrategy;
 
     private Team homeTeam;
+    
     private Team awayTeam;
 
     @BeforeEach
     void setUp() {
-        
+
         homeTeam = new Team(1, "Home", "HT", 2000, 100, 70, 15, 180, 60);
         awayTeam = new Team(2, "Away", "AT", 1600, 100, 30, 50, 80, 160);
 
