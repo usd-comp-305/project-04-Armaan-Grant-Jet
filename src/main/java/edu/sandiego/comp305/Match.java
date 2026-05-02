@@ -28,7 +28,8 @@ public class Match {
     
     // Testable constructor
     public Match(final Team homeTeam, final Team awayTeam, 
-        final PredictionStrategy strategy, final boolean isKnockout, 
+        final PredictionStrategy strategy, 
+        final boolean isKnockout, 
         final RandomProvider random) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
@@ -38,24 +39,31 @@ public class Match {
     }
 
     public MatchResult play() {
-        final double homeWinProbability = strategy.getProbability(homeTeam, awayTeam);
-        final double drawProbability = (1.0 - homeWinProbability) * DRAW_SHARE;
+        final double homeWinProbability = 
+            strategy.getProbability(homeTeam, awayTeam);
+        final double drawProbability = 
+            (1.0 - homeWinProbability) * DRAW_SHARE;
         
         final double outcomeRoll = random.nextDouble();
         if (outcomeRoll < homeWinProbability) {
             final int homeGoals = simulateGoals(BASE_GOALS * 1.2);
             final int awayGoals = simulateGoals(BASE_GOALS * 0.8);
-            final int guaranteedWinnerGoals = Math.max(homeGoals, awayGoals + 1);
+            final int guaranteedWinnerGoals = 
+                Math.max(homeGoals, awayGoals + 1);
             
-            return new MatchResult(homeTeam, guaranteedWinnerGoals, awayGoals, false);
-        } else if (outcomeRoll < homeWinProbability + drawProbability) {
+            return new MatchResult(
+                homeTeam, guaranteedWinnerGoals, awayGoals, false);
+        } else if (outcomeRoll < 
+            homeWinProbability + drawProbability) {
             final int goals = simulateGoals(BASE_GOALS);
             if (isKnockout) {
                 final Team winner = simulatePenalties();
 
-                return new MatchResult(winner, goals, goals, false);
+                return new MatchResult(winner, 
+                    goals, goals, false);
             }
-            return new MatchResult(null, goals, goals, true);
+            return new MatchResult(null, 
+                goals, goals, true);
         } else {
             final int homeGoals = simulateGoals(BASE_GOALS * 0.8);
             final int awayGoals = simulateGoals(BASE_GOALS * 1.2);
