@@ -92,5 +92,79 @@ public class MatchTest {
 
         assertTrue(result.getAwayTeamGoals() > result.getHomeTeamGoals());
     }
+
+    @Test
+    void playGroupStageIsADraw() {
+        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, false, mockRandom);
+
+        assertTrue(match.play().isDraw());
+    }
+
+    @Test
+    void playGroupStageWinnerIsNull() {
+        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, false, mockRandom);
+
+        assertNull(match.play().getWinner());
+    }
+
+    @Test
+    void playGroupStageGoalsAreEqual() {
+        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, false, mockRandom);
+        final MatchResult result = match.play();
+
+        assertEquals(result.getHomeTeamGoals(), result.getAwayTeamGoals());
+    }
+
+    @Test
+    void playKnockoutStageIsNotDraw() {
+        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01, 0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
+
+        assertFalse(match.play().isDraw());
+    }
+
+    @Test
+    void playKnockoutStageHomeWinPenalties() {
+        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01, 0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
+
+        assertEquals(homeTeam, match.play().getWinner());
+    }
+
+    @Test
+    void playKnockoutStageAwayWinPenalties() {
+        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01, 0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
+
+        assertEquals(awayTeam, match.play().getWinner());
+    }
+
+    @Test
+    void playKnockoutStageGoalsAreEqual() {
+        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01, 0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
+        final MatchResult result = match.play();
+
+        assertEquals(result.getHomeTeamGoals(), result.getAwayTeamGoals());
+    }
+
+    @Test
+    void simulatePenaltiesBelowThresholdReturnsHomeTeam() {
+        when(mockRandom.nextDouble()).thenReturn(0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
+
+        assertEquals(homeTeam, match.simulatePenalties());
+    }
+
+    @Test
+    void simulatePenaltiesAboveThresholdReturnsAwayTeam() {
+        when(mockRandom.nextDouble()).thenReturn(0.01);
+        final Match match = new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
+
+        assertEquals(awayTeam, match.simulatePenalties());
+    }
     
 }
