@@ -20,11 +20,13 @@ public class Match {
 
     private final RandomProvider random;
 
+    // Production constructor
     public Match(final Team homeTeam, final Team awayTeam, 
         final PredictionStrategy strategy, final boolean isKnockout) {
         this(homeTeam, awayTeam, strategy, isKnockout, new Random()::nextDouble);
     }
     
+    // Testable constructor
     public Match(final Team homeTeam, final Team awayTeam, 
         final PredictionStrategy strategy, final boolean isKnockout, 
         final RandomProvider random) {
@@ -64,7 +66,11 @@ public class Match {
     }
 
     public Team simulatePenalties() {
-        return null;
+        if (random.nextDouble() < PENALTY_WIN_PROBABILITY) {
+            return homeTeam;
+        } else {
+            return awayTeam;
+        }
     }
 
     private int simulateGoals(final double lambda) {
