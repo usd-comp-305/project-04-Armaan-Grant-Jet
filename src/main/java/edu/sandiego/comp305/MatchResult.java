@@ -21,7 +21,7 @@ public class MatchResult {
         return winner;
     }
 
-    public boolean getIsDraw(){
+    public boolean isDraw(){
         return isDraw;
     }
 

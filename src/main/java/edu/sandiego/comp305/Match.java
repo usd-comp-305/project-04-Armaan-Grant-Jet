@@ -11,11 +11,11 @@ public class Match {
     private final boolean isKnockout; 
 
     public Match(final Team homeTeam, final Team awayTeam, 
-        final PredictionStrategy strategy, final boolean isKnocked) {
+        final PredictionStrategy strategy, final boolean isKnockout) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.strategy = strategy;
-        this.isKnockout = isKnocked;
+        this.isKnockout = isKnockout;
     }
 
     public MatchResult play() {
