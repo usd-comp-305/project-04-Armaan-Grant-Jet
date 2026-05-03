@@ -2,25 +2,16 @@ package edu.sandiego.comp305;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
-import org.mockito.quality.Strictness;
-import org.mockito.junit.jupiter.MockitoSettings;
 
-@MockitoSettings(strictness = Strictness.LENIENT)
-@ExtendWith(MockitoExtension.class)
 public class MatchTest {
 
     private double[] randomValues;
-    
+
     private int randomIndex;
 
     private RandomProvider mockRandom;
 
-    @Mock
     private PredictionStrategy mockStrategy;
 
     private Team homeTeam;
@@ -38,15 +29,16 @@ public class MatchTest {
             }
         };
 
+        mockStrategy = new PredictionStrategy() {
+            @Override
+            public double getProbability(
+                final Team homeTeam, final Team awayTeam) {
+                return 0.70;
+            }
+        };
+
         homeTeam = new Team(1, "Home", "HT", 2000, 100, 70, 15, 180, 60);
         awayTeam = new Team(2, "Away", "AT", 1600, 100, 30, 50, 80, 160);
-
-        // homeWinProb = 0.7, drawProb = (1-0.7)*0.35 = 0.105
-        // home win: roll < 0.70
-        // draw: 0.7 <= roll < 0.805
-        // away win: roll > 0.805
-
-        when(mockStrategy.getProbability(homeTeam, awayTeam)).thenReturn(0.70);
     }
 
     private void setRandomValues(final double... values) {
