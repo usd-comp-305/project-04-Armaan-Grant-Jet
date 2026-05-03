@@ -14,18 +14,28 @@ import org.mockito.junit.jupiter.MockitoSettings;
 @ExtendWith(MockitoExtension.class)
 public class MatchTest {
 
-    @Mock
+    private double[] randomValues;
+    private int randomIndex;
+
     private RandomProvider mockRandom;
 
     @Mock
     private PredictionStrategy mockStrategy;
 
     private Team homeTeam;
-    
+
     private Team awayTeam;
 
     @BeforeEach
     void setUp() {
+
+        randomIndex = 0;
+        mockRandom = new RandomProvider() {
+            @Override
+            public double nextDouble() {
+                return randomValues[randomIndex++];
+            }
+        };
 
         homeTeam = new Team(1, "Home", "HT", 2000, 100, 70, 15, 180, 60);
         awayTeam = new Team(2, "Away", "AT", 1600, 100, 30, 50, 80, 160);
@@ -38,32 +48,39 @@ public class MatchTest {
         when(mockStrategy.getProbability(homeTeam, awayTeam)).thenReturn(0.70);
     }
 
+    private void setRandomValues(final double... values) {
+        randomValues = values;
+        randomIndex = 0;
+    }
+
     private void setHomeWin() {
-        when(mockRandom.nextDouble()).thenReturn(0.01, 0.01, 0.01);
+        setRandomValues(0.01, 0.01, 0.01);
     }
 
     private void setAwayWin() {
-        when(mockRandom.nextDouble()).thenReturn(0.99, 0.01, 0.01);
+        setRandomValues(0.99, 0.01, 0.01);
     }
 
     private void setGroupStage() {
-        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01);
+        setRandomValues(0.75, 0.01);
     }
 
     private void setKnockoutStageHomeWinsPenalties() {
-        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01, 0.01);
+        setRandomValues(0.75, 0.01, 0.01);
     }
 
     private void setKnockoutStageAwayWinsPenalties() {
-        when(mockRandom.nextDouble()).thenReturn(0.75, 0.01, 0.99);
+        setRandomValues(0.75, 0.01, 0.99);
     }
 
     private Match groupMatch() {
-        return new Match(homeTeam, awayTeam, mockStrategy, false, mockRandom);
+        return new Match(
+            homeTeam, awayTeam, mockStrategy, false, mockRandom);
     }
 
     private Match knockoutMatch() {
-        return new Match(homeTeam, awayTeam, mockStrategy, true, mockRandom);
+        return new Match(
+            homeTeam, awayTeam, mockStrategy, true, mockRandom);
     }
 
     private MatchResult playGroupMatch() {
@@ -178,14 +195,14 @@ public class MatchTest {
 
     @Test
     void simulatePenaltiesBelowThresholdReturnsHomeTeam() {
-        when(mockRandom.nextDouble()).thenReturn(0.01);
+        setRandomValues(0.01);
 
         assertEquals(homeTeam, knockoutMatch().simulatePenalties());
     }
 
     @Test
     void simulatePenaltiesAboveThresholdReturnsAwayTeam() {
-        when(mockRandom.nextDouble()).thenReturn(0.99);
+        setRandomValues(0.99);
 
         assertEquals(awayTeam, knockoutMatch().simulatePenalties());
     }
