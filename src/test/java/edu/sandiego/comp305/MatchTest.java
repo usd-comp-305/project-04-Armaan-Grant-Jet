@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 public class MatchTest {
 
     private double[] randomValues;
+    
     private int randomIndex;
 
     private RandomProvider mockRandom;
