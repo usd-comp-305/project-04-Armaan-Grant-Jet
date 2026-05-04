@@ -36,14 +36,14 @@ public class Group {
 
     public List<Standings> getStandings(){
         final List<Standings> sorted = new ArrayList<>(standings);
-        sorted.sort((teamA, teamB) -> {
-            if (teamB.getPoints().intValue() != teamA.getPoints()) {
-                return teamB.getPoints() - teamA.getPoints();
+        sorted.sort((homeTeam, awayTeam) -> {
+            if (awayTeam.getPoints().intValue() != homeTeam.getPoints()) {
+                return awayTeam.getPoints() - homeTeam.getPoints();
             }
-            if (teamB.getGoalDiff().intValue() != teamA.getGoalDiff()) {
-                return teamB.getGoalDiff() - teamA.getGoalDiff();
+            if (awayTeam.getGoalDiff().intValue() != homeTeam.getGoalDiff()) {
+                return awayTeam.getGoalDiff() - homeTeam.getGoalDiff();
             }
-            return teamB.getGoalsFor() - teamA.getGoalsFor();
+            return awayTeam.getGoalsFor() - homeTeam.getGoalsFor();
         });
         return sorted;
     }
