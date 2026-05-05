@@ -15,15 +15,15 @@ public class Team {
 
     private final int totalLosses;
 
-    private final int goalsScored;
+    private final int goalsFor;
 
-    private final int goalsConceded;
+    private final int goalsAgainst;
 
     public Team(final int ranking, final String countryName,
                 final String countryCode, final int rating,
                 final int totalGames, final int totalWins,
-                final int totalLosses, final int goalsScored,
-                final int goalsConceded){
+                final int totalLosses, final int goalsFor,
+                final int goalsAgainst){
         this.ranking = ranking;
         this.countryName = countryName;
         this.countryCode = countryCode;
@@ -31,40 +31,12 @@ public class Team {
         this.totalGames = totalGames;
         this.totalWins = totalWins;
         this.totalLosses = totalLosses;
-        this.goalsScored = goalsScored;
-        this.goalsConceded = goalsConceded;
-    }
-
-    public Integer getRanking(){
-        return ranking;
-    }
-    
-    public String getCountryName(){
-        return countryName;
-    }
-    
-    public String getCountryCode(){
-        return countryCode;
+        this.goalsFor = goalsFor;
+        this.goalsAgainst = goalsAgainst;
     }
 
     public Integer getRating(){
         return rating;
-    }
-
-    public Integer getTotalGames(){
-        return totalGames;
-    }
-    
-    public Integer getTotalLosses(){
-        return totalLosses;
-    }
-
-    public Integer getGoalsFor(){
-        return goalsScored;
-    }
-
-    public Integer getGoalsAgainst(){
-        return goalsConceded;
     }
 
     public Double getWinRate(){
@@ -72,7 +44,38 @@ public class Team {
     }
 
     public Integer getGoalDifference(){
-        return goalsScored - goalsConceded;
+        return goalsFor - goalsAgainst;
     }
 
+    public Integer getRanking(){
+        return ranking;
+    }
+
+    public String getCountryName(){
+        return countryName;
+    }
+
+    public String getCountryCode(){
+        return countryCode;
+    }
+
+    public Integer getTotalLosses(){
+        return totalLosses;
+    }
+
+    public Integer getTotalGames(){
+        return totalGames;
+    }
+
+    public Integer getTotalWins(){
+        return totalWins;
+    }
+
+    public Integer getGoalsFor(){
+        return goalsFor;
+    }
+
+    public Integer getGoalsAgainst(){
+        return goalsAgainst;
+    }
 }
