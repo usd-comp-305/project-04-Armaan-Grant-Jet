@@ -85,7 +85,7 @@ public class MatchTest {
     }
 
     @Test
-    void playNeverReturnsNullAndDoesNotBreakSim() {
+    void playNeverReturnsNullAndDoesNotBreak() {
         setHomeWin();
 
         assertNotNull(groupMatch().play());
@@ -102,7 +102,7 @@ public class MatchTest {
     void playReturnsHomeWinIsNotADraw() {
         setHomeWin();
 
-        assertFalse(groupMatch().play().isDraw());
+        assertFalse(groupMatch().play().getIsDraw());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class MatchTest {
         setHomeWin();
         final MatchResult result = playGroupMatch();
 
-        assertTrue(result.getHomeTeamGoals() > result.getAwayTeamGoals());
+        assertTrue(result.getHomeGoals() > result.getAwayGoals());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class MatchTest {
     void playReturnsAwayWinIsNotADraw() {
         setAwayWin();
 
-        assertFalse(groupMatch().play().isDraw());
+        assertFalse(groupMatch().play().getIsDraw());
     }
 
     @Test
@@ -132,14 +132,14 @@ public class MatchTest {
         setAwayWin();
         final MatchResult result = playGroupMatch();
 
-        assertTrue(result.getAwayTeamGoals() > result.getHomeTeamGoals());
+        assertTrue(result.getAwayGoals() > result.getHomeGoals());
     }
 
     @Test
     void playGroupStageIsADraw() {
         setGroupStage();
 
-        assertTrue(groupMatch().play().isDraw());
+        assertTrue(groupMatch().play().getIsDraw());
     }
 
     @Test
@@ -154,14 +154,14 @@ public class MatchTest {
         setGroupStage();
         final MatchResult result = playGroupMatch();
 
-        assertEquals(result.getHomeTeamGoals(), result.getAwayTeamGoals());
+        assertEquals(result.getHomeGoals(), result.getAwayGoals());
     }
 
     @Test
     void playKnockoutStageIsNotDraw() {
         setKnockoutStageHomeWinsPenalties();
 
-        assertFalse(knockoutMatch().play().isDraw());
+        assertFalse(knockoutMatch().play().getIsDraw());
     }
 
     @Test
@@ -183,7 +183,7 @@ public class MatchTest {
         setKnockoutStageHomeWinsPenalties();
         final MatchResult result = playKnockoutMatch();
 
-        assertEquals(result.getHomeTeamGoals(), result.getAwayTeamGoals());
+        assertEquals(result.getHomeGoals(), result.getAwayGoals());
     }
 
     @Test

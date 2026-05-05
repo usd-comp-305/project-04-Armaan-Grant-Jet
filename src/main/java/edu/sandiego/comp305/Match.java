@@ -54,26 +54,28 @@ public class Match {
                 Math.max(homeGoals, awayGoals + 1);
             
             return new MatchResult(
-                homeTeam, guaranteedWinnerGoals, awayGoals, false);
+                homeTeam, awayTeam, homeTeam, 
+                guaranteedWinnerGoals, awayGoals, false);
         } else if (outcomeRoll < 
             homeWinProbability + drawProbability) {
             final int goals = simulateGoals(BASE_GOALS);
             if (isKnockout) {
                 final Team winner = simulatePenalties();
 
-                return new MatchResult(winner, 
-                    goals, goals, false);
+                return new MatchResult(homeTeam, awayTeam, 
+                    winner, goals, goals, false);
             }
-            return new MatchResult(null, 
-                goals, goals, true);
+            return new MatchResult(homeTeam, awayTeam, 
+                null, goals, goals, true);
         } else {
             final int homeGoals = simulateGoals(BASE_GOALS * 0.8);
             final int awayGoals = simulateGoals(BASE_GOALS * 1.2);
             final int guaranteedWinnerGoals = 
                 Math.max(awayGoals, homeGoals + 1);
 
-            return new MatchResult(awayTeam, 
-                homeGoals, guaranteedWinnerGoals, false);
+            return new MatchResult(homeTeam, awayTeam, 
+                awayTeam, homeGoals, 
+                guaranteedWinnerGoals, false);
         }
     }
 
