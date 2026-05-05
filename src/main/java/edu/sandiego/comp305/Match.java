@@ -1,6 +1,14 @@
 package edu.sandiego.comp305;
 
+import java.util.Random;
+
 public class Match {
+
+    private static final double DRAW_SHARE = 0.35;
+
+    private static final double BASE_GOALS = 1.3;
+
+    private static final double PENALTY_WIN_PROBABILITY = 0.5;
 
     private final Team homeTeam;
 
@@ -8,22 +16,87 @@ public class Match {
 
     private final PredictionStrategy strategy;
 
-    private final boolean isKnockout; 
+    private final boolean isKnockout;
 
+    private final RandomProvider random;
+
+    // Production constructor
     public Match(final Team homeTeam, final Team awayTeam, 
-        final PredictionStrategy strategy, final boolean isKnocked) {
+        final PredictionStrategy strategy, 
+        final boolean isKnockout) {
+        this(homeTeam, awayTeam, strategy, 
+            isKnockout, new Random()::nextDouble);
+    }
+    
+    // Testable constructor
+    public Match(final Team homeTeam, final Team awayTeam, 
+        final PredictionStrategy strategy, 
+        final boolean isKnockout, 
+        final RandomProvider random) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.strategy = strategy;
-        this.isKnockout = isKnocked;
+        this.isKnockout = isKnockout;
+        this.random = random;
     }
 
     public MatchResult play() {
-        return null;
+        final double homeWinProbability = 
+            strategy.getProbability(homeTeam, awayTeam);
+        final double drawProbability = 
+            (1.0 - homeWinProbability) * DRAW_SHARE;
+        
+        final double outcomeRoll = random.nextDouble();
+        if (outcomeRoll < homeWinProbability) {
+            final int homeGoals = simulateGoals(BASE_GOALS * 1.2);
+            final int awayGoals = simulateGoals(BASE_GOALS * 0.8);
+            final int guaranteedWinnerGoals = 
+                Math.max(homeGoals, awayGoals + 1);
+            
+            return new MatchResult(
+                homeTeam, awayTeam, homeTeam, 
+                guaranteedWinnerGoals, awayGoals, false);
+        } else if (outcomeRoll < 
+            homeWinProbability + drawProbability) {
+            final int goals = simulateGoals(BASE_GOALS);
+            if (isKnockout) {
+                final Team winner = simulatePenalties();
+
+                return new MatchResult(homeTeam, awayTeam, 
+                    winner, goals, goals, false);
+            }
+            return new MatchResult(homeTeam, awayTeam, 
+                null, goals, goals, true);
+        } else {
+            final int homeGoals = simulateGoals(BASE_GOALS * 0.8);
+            final int awayGoals = simulateGoals(BASE_GOALS * 1.2);
+            final int guaranteedWinnerGoals = 
+                Math.max(awayGoals, homeGoals + 1);
+
+            return new MatchResult(homeTeam, awayTeam, 
+                awayTeam, homeGoals, 
+                guaranteedWinnerGoals, false);
+        }
     }
 
     public Team simulatePenalties() {
-        return null;
+        if (random.nextDouble() < PENALTY_WIN_PROBABILITY) {
+            return homeTeam;
+        } else {
+            return awayTeam;
+        }
+    }
+
+    private int simulateGoals(final double lambda) {
+        final double threshold = Math.exp(-lambda);
+        double product = 1.0;
+        int goals = 0;
+        do {
+            product *= random.nextDouble();
+            goals++;
+        } while (product > threshold);
+        
+        return goals - 1;
     }
 }
 

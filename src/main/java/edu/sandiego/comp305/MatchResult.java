@@ -9,7 +9,7 @@ public class MatchResult {
 
     private final int homeGoals;
 
-    private final int  awayGoals;
+    private final int awayGoals;
 
     private final boolean isDraw;
 
