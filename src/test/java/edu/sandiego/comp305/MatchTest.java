@@ -85,7 +85,7 @@ public class MatchTest {
     }
 
     @Test
-    void playNeverReturnsNull() {
+    void playNeverReturnsNullAndDoesNotBreakSim() {
         setHomeWin();
 
         assertNotNull(groupMatch().play());
