@@ -4,6 +4,8 @@ import requests
 import pandas as PD
 from io import StringIO
 
+CURACAO_CODE = ["CW"]
+
 PD.set_option("display.show_dimensions", False)
 
 WORLD_URL = "https://eloratings.net/World.tsv"
@@ -11,9 +13,8 @@ COUNTRY_NAMES_URL = "https://eloratings.net/en.teams.tsv"
 
 def fetch_tsv(url):
     response = requests.get(url)
-    
     return PD.read_csv(StringIO(response.text), sep="\t", header=None)
-    
+
 def get_qualified_countries_stats():
     qualified_countries_dataframe = fetch_tsv(WORLD_URL)
     qualified_countries_dataframe = qualified_countries_dataframe[DATA["required_world_data"]]
@@ -39,12 +40,15 @@ def build_final_qualified_teams_dataframe():
     country_names = get_qualified_country_names()
 
     merged_dataframe = PD.merge(statistics, country_names, on="Country")
-    filtered_dataframe = filter_qualified_teams(merged_dataframe, qualified_teams)
+    filtered_by_name = filter_qualified_teams(merged_dataframe, qualified_teams)
+    filtered_by_code = merged_dataframe[merged_dataframe["Country"].isin(CURACAO_CODE)]
 
-    return filtered_dataframe.sort_values(by="Rating", ascending=False)
+    combined = PD.concat([filtered_by_name, filtered_by_code]).drop_duplicates()
+    combined["CountryNames"] = combined["CountryNames"].str.replace("Ã§", "ç")
+    return combined.sort_values(by="Rating", ascending=False)
 
 if __name__ == "__main__":
     final_dataframe = build_final_qualified_teams_dataframe()
     print(final_dataframe)
-    #final_dataframe.to_csv("QualifiedWorldCupTeams.csv", index=False)
+    final_dataframe.to_csv("QualifiedWorldCupTeams.csv", index=False)
 

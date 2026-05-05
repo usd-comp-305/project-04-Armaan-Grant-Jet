@@ -3,17 +3,24 @@ package edu.sandiego.comp305;
 public class MatchResult {
     private final Team winner;
 
-    private final int homeTeamGoals;
+    private final Team homeTeam;
 
-    private final int awayTeamGoals;
+    private final Team awayTeam;
+
+    private final int homeGoals;
+
+    private final int  awayGoals;
 
     private final boolean isDraw;
 
-    public MatchResult(final Team winner, final int homeTeamGoals,
-                       final int awayTeamGoals, final boolean isDraw){
+    public MatchResult(final Team homeTeam, final Team awayTeam,
+                       final Team winner, final int homeGoals,
+                       final int AwayGoals, final boolean isDraw){
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
         this.winner = winner;
-        this.homeTeamGoals = homeTeamGoals;
-        this.awayTeamGoals = awayTeamGoals;
+        this.homeGoals = homeGoals;
+        this.awayGoals = AwayGoals;
         this.isDraw = isDraw;
     }
 
@@ -21,15 +28,23 @@ public class MatchResult {
         return winner;
     }
 
-    public boolean isDraw(){
+    public Team getHomeTeam(){
+        return homeTeam;
+    }
+
+    public Team getAwayTeam(){
+        return awayTeam;
+    }
+
+    public boolean getIsDraw(){
         return isDraw;
     }
 
-    public Integer getHomeTeamGoals(){
-        return homeTeamGoals;
+    public Integer getHomeGoals(){
+        return homeGoals;
     }
 
-    public Integer getAwayTeamGoals(){
-        return awayTeamGoals;
+    public Integer getAwayGoals(){
+        return awayGoals;
     }
 }
