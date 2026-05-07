@@ -14,10 +14,21 @@ public class SimulatorResults {
         this.totalRuns = 0;
     }
 
-    public void recordWin(final Team team) {}
+    public void recordWin(final Team team) {
+        if (winCounts.containsKey(team)){
+            winCounts.put(team, winCounts.get(team) + 1);
+        }
+        else {
+            winCounts.put(team,1);
+        }
+        totalRuns++;
+    }
 
     public double getWinProbability(final Team team) {
-        return 0.0;
+        if (!winCounts.containsKey(team)){
+            return 0.0;
+        }
+        return (double) winCounts.get(team) / totalRuns;
     }
 
     public int getTotalRuns() {
