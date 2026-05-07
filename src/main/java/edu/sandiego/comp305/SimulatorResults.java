@@ -35,7 +35,19 @@ public class SimulatorResults {
         return totalRuns;
     }
 
-    public void printResults() {}
-    
+    public void printResults() {
+        System.out.println("Total Simulations: " + totalRuns);
+        for (final Team team : winCounts.keySet()){
+            printTeamResult(team);
+        }
+    }
+
+    private void printTeamResult(final Team team){
+        final int wins = winCounts.get(team);
+        final double probability = getWinProbability(team);
+        System.out.println(team.getCountryName()
+                + " - Wins: " + wins
+                + " - Probability: " + probability);
+    }
 }
 
