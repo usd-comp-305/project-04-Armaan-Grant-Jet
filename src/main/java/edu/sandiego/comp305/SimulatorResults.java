@@ -32,7 +32,7 @@ public class SimulatorResults {
     }
 
     public int getTotalRuns() {
-        return 0;
+        return totalRuns;
     }
 
     public void printResults() {}
