@@ -7,12 +7,11 @@ public class SimulatorResults {
     
     private final Map<Team, Integer> winCounts;
 
-    private final int totalRuns;
+    private int totalRuns;
 
-    public SimulatorResults(final Map<Team, Integer> winCounts, 
-        final int totalRuns) {
-        this.winCounts = new HashMap<>(winCounts);
-        this.totalRuns = totalRuns;
+    public SimulatorResults() {
+        this.winCounts = new HashMap<>();
+        this.totalRuns = 0;
     }
 
     public void recordWin(final Team team) {}
