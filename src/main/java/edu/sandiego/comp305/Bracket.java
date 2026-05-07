@@ -19,7 +19,12 @@ public class Bracket {
     }
 
     public List<Team> playRound(){
-        return null;
+        final List<Team> winners = new ArrayList<>();
+        for (int i = 0; i < teams.size() - 1; i +=2){
+            final Team winner = playMatch(teams.get(i), teams.get(i+1));
+            winners.add(winner);
+        }
+        return winners;
     }
 
     public Team getWinner(){
@@ -28,5 +33,11 @@ public class Bracket {
 
     public Integer getCurrentRound(){
         return round;
+    }
+
+    private Team playMatch(final Team homeTeam, final Team awayTeam) {
+        final Match match = new Match(homeTeam, awayTeam, strategy, true);
+        final MatchResult result = match.play();
+        return result.getWinner();
     }
 }
