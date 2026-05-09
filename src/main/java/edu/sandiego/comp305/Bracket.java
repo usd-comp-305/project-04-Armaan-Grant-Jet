@@ -28,7 +28,7 @@ public class Bracket {
     }
 
     public Team getWinner(){
-        return null;
+        return teams.get(0);
     }
 
     public Integer getCurrentRound(){
