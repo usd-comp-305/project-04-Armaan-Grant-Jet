@@ -3,6 +3,7 @@ package edu.sandiego.comp305;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 
@@ -49,5 +50,24 @@ public class BracketTest {
         final List<Team> winners = bracket.playRound();
 
         assertEquals(2, winners.size());
+    }
+
+    @Test
+    public void testGetWinner() {
+        final List<Team> teams = new ArrayList<>();
+
+        final Team spain = new Team(1, "Spain", "ES", 2165,
+                780, 461, 138, 1591, 697);
+
+        final Team argentina = new Team(2, "Argentina", "AR", 2113,
+                1109, 610, 228, 2112, 1136);
+
+        teams.add(spain);
+        teams.add(argentina);
+
+        final Bracket bracket = new Bracket(teams, 1, new EloStrategy());
+        bracket.playRound();
+
+        assertNotNull(bracket.getWinner());
     }
 }
