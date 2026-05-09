@@ -15,11 +15,10 @@ public class SimulatorResults {
     }
 
     public void recordWin(final Team team) {
-        if (winCounts.containsKey(team)){
+        if (winCounts.containsKey(team)) {
             winCounts.put(team, winCounts.get(team) + 1);
-        }
-        else {
-            winCounts.put(team,1);
+        } else {
+            winCounts.put(team, 1);
         }
         totalRuns++;
     }
