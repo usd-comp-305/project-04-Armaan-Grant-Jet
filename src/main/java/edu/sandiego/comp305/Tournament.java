@@ -7,11 +7,11 @@ import java.util.ArrayList;
 public class Tournament {
     private final List<Group> groups;
 
-    private final Bracket bracket;
+    private Bracket bracket;
 
-    public Tournament(final List<Group> groups, final Bracket bracket){
+    public Tournament(final List<Group> groups){
         this.groups = new ArrayList<>(groups);
-        this.bracket = bracket;
+        this.bracket = null;
     }
 
     public void runGroupStage(){}
