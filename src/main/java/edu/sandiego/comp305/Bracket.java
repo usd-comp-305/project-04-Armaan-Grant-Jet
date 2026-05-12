@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bracket {
+    public static final int MATCH_PAIR = 2;
     private final List<Team> teams;
 
     private final int round;
@@ -20,7 +21,7 @@ public class Bracket {
 
     public List<Team> playRound(){
         final List<Team> winners = new ArrayList<>();
-        for (int i = 0; i < teams.size() - 1; i +=2){
+        for (int i = 0; i < teams.size() - 1; i +=MATCH_PAIR){
             final Team winner = playMatch(teams.get(i), teams.get(i+1));
             winners.add(winner);
         }
