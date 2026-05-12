@@ -37,6 +37,7 @@ public class TournamentTest {
         tournament = new Tournament(groups);
 
     }
+
     @Test
     public void testRunGroupStage() {
         tournament.runGroupStage();

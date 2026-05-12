@@ -35,6 +35,7 @@ public class Tournament {
         }
         return new Bracket(current, 1, new EloStrategy()).getWinner();
     }
+
     private List<Team> playNextRound(final List<Team> teams) {
         final Bracket nextRound = new Bracket(teams, 1, new EloStrategy());
         return nextRound.playRound();
