@@ -54,7 +54,7 @@ public class SimulatorTest {
     }
 
     @Test
-    public void testRunSImulationThousandRuns() {
+    public void testRunSimulationThousandRuns() {
         simulator.runSimulations(1000);
         assertEquals(1000, results.getTotalRuns());
     }
