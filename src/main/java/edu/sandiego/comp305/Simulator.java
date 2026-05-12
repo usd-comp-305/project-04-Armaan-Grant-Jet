@@ -15,5 +15,15 @@ public class Simulator {
         this.loader = loader;
     }
 
-    public void runSimulations(final int numSimRun) {}
+    public void runSimulations(final int numSimRun) {
+        for (int i = 0; i < numSimRun; i++) {
+            tournament.reset();
+            tournament.runGroupStage();
+            ;
+            tournament.buildBracket();
+            final Team winner = tournament.runKnockout();
+            result.recordWin(winner);
+        }
+        result.printResults();
+    }
 }

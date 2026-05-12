@@ -9,6 +9,8 @@ import java.util.List;
 public class SimulatorTest {
     private Simulator simulator;
 
+    private SimulatorResults results;
+
     @BeforeEach
     public void setUp() {
         final List<Team> teams = new ArrayList<>();
@@ -27,11 +29,16 @@ public class SimulatorTest {
 
         final Tournament tournament = new Tournament(
                 groups, new EloStrategy());
-        final SimulatorResults results = new SimulatorResults();
+        results = new SimulatorResults();
         final CSVLoader loader = new CSVLoader("teams.csv");
 
         simulator = new Simulator(tournament, results, loader);
     }
 
+    @Test
+    public void testRunSimulations() {
+        simulator.runSimulations(10);
+        assertEquals(10, results.getTotalRuns());
+    }
 
 }
