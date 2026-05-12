@@ -11,11 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TournamentTest {
     private Tournament tournament;
 
+    private Team spain;
+
     @BeforeEach
     public void setUp(){
         final List<Team> teams = new ArrayList<>();
 
-        final Team spain = new Team(1, "Spain", "Es", 2165,
+        spain = new Team(1, "Spain", "Es", 2165,
                 780, 461, 138, 1591, 697);
 
         final Team argentina = new Team(2, "Argentina", "AR", 2113,
@@ -75,5 +77,14 @@ public class TournamentTest {
         final Tournament emptyTournament = new Tournament(
                 new ArrayList<>(), new EloStrategy());
         emptyTournament.runGroupStage();
+    }
+
+    @Test
+    public void testRunKnockoutOneTeamRemaining() {
+        final List<Team> teams = new ArrayList<>();
+        teams.add(spain);
+        final Bracket singleBracket = new Bracket(
+                teams, 1, new EloStrategy());
+        assertNotNull(singleBracket.getWinner());
     }
 }
