@@ -7,7 +7,7 @@ public class Simulator {
     private final SimulatorResults result;
 
     public Simulator(final Tournament tournament, 
-        final SimulatorResults result, final CSVLoader loader) {
+        final SimulatorResults result) {
         this.tournament = tournament;
         this.result = result;
     }
@@ -16,7 +16,6 @@ public class Simulator {
         for (int i = 0; i < numSimRun; i++) {
             tournament.reset();
             tournament.runGroupStage();
-            ;
             tournament.buildBracket();
             final Team winner = tournament.runKnockout();
             result.recordWin(winner);

@@ -32,7 +32,7 @@ public class SimulatorTest {
         results = new SimulatorResults();
         final CSVLoader loader = new CSVLoader("teams.csv");
 
-        simulator = new Simulator(tournament, results, loader);
+        simulator = new Simulator(tournament, results);
     }
 
     @Test
