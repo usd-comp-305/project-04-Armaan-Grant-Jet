@@ -22,8 +22,26 @@ public class Group {
         }
     }
 
-    public void playGroupStage(){
-        //will implement when Match.play() is created
+    public void playGroupStage() {
+        final PredictionStrategy strategy = new EloStrategy();
+        for (int i = 0; i < teams.size(); i++) {
+            for (int j = i + 1; j < teams.size(); j++) {
+                final Match match = new Match(teams.get(i),
+                        teams.get(j), strategy, false);
+                final MatchResult result = match.play();
+                findStandings(teams.get(i)).addResult(result);
+                findStandings(teams.get(j)).addResult(result);
+            }
+        }
+    }
+
+    private Standings findStandings(final Team team) {
+        return standings.stream()
+                .filter(s -> s.getTeam().equals(team))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(
+                        "No standings found for: "
+                                + team.getCountryName()));
     }
 
     public List<Team> getQualifiers(){

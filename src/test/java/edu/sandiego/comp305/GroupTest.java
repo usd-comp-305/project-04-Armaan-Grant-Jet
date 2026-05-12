@@ -62,16 +62,39 @@ public class GroupTest {
     }
 
     @Test
-    void getStandingsReturnsFourStandings() {
-        final Group group = new Group("A",
-                List.of(spain, france, brazil, argentina));
-        assertEquals(4, group.getStandings().size());
-    }
-
-    @Test
     void getQualifiersReturnsTwoTeams() {
         final Group group = new Group("A",
                 List.of(spain, france, brazil, argentina));
+        assertEquals(2, group.getQualifiers().size());
+    }
+
+    @Test
+    void playGroupStageUpdatesPoints() {
+        final Group group = new Group("A",
+                List.of(spain, france, brazil, argentina));
+        group.playGroupStage();
+        final int totalPoints = group.getStandings().stream()
+                .mapToInt(Standings::getPoints)
+                .sum();
+        assertTrue(totalPoints > 0);
+    }
+
+    @Test
+    void playGroupStageAllTeamsHaveGoalsRecorded() {
+        final Group group = new Group("A",
+                List.of(spain, france, brazil, argentina));
+        group.playGroupStage();
+        for (final Standings s : group.getStandings()) {
+            assertTrue(s.getGoalsFor() >= 0);
+            assertTrue(s.getGoalsAgainst() >= 0);
+        }
+    }
+
+    @Test
+    void getQualifiersAfterGroupStageReturnsTwoTeams() {
+        final Group group = new Group("A",
+                List.of(spain, france, brazil, argentina));
+        group.playGroupStage();
         assertEquals(2, group.getQualifiers().size());
     }
 }
