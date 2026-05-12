@@ -20,7 +20,13 @@ public class Tournament {
         }
     }
 
-    public void buildBracket(){}
+    public void buildBracket() {
+        final List<Team> qualifiers = new ArrayList<>();
+        for (final Group group : groups) {
+            qualifiers.addAll(group.getQualifiers());
+        }
+        bracket = new Bracket(qualifiers,1 , new EloStrategy());
+    }
 
     public Team runKnockout(){
         return null;

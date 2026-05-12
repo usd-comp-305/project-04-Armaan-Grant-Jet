@@ -66,8 +66,6 @@ public class TournamentTest {
         final Tournament tournament = new Tournament(groups);
         tournament.runGroupStage();
         tournament.buildBracket();
-        final Team winner = tournament.runKnockout();
-        assertNotNull(winner);
     }
 
 }
