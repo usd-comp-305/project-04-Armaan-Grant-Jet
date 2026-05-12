@@ -53,5 +53,11 @@ public class Standings {
     public Team getTeam(){
         return team;
     }
+
+    public void reset() {
+        points = 0;
+        goalsFor = 0;
+        goalsAgainst = 0;
+    }
 }
 

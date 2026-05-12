@@ -69,4 +69,10 @@ public class Group {
     public String getName(){
         return name;
     }
+
+    public void reset() {
+        for (final Standings standing : standings) {
+            standing.reset();
+        }
+    }
 }
