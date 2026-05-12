@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Tournament {
+    private static final int SINGLE_ELIMINATION = 1;
+
     private final List<Group> groups;
 
     private Bracket bracket;
 
     private final PredictionStrategy strategy;
-
-    private static final int SINGLE_ELIMINATION = 1;
 
     public Tournament(final List<Group> groups,
                       final PredictionStrategy strategy){
@@ -43,7 +43,7 @@ public class Tournament {
         while (current.size() > 1) {
             current = playNextRound(current);
         }
-        return new Bracket(current, 1, new EloStrategy()).getWinner();
+        return new Bracket(current,  SINGLE_ELIMINATION, strategy).getWinner();
     }
 
     private List<Team> playNextRound(final List<Team> teams) {
