@@ -30,7 +30,6 @@ public class SimulatorTest {
         final Tournament tournament = new Tournament(
                 groups, new EloStrategy());
         results = new SimulatorResults();
-        final CSVLoader loader = new CSVLoader("teams.csv");
 
         simulator = new Simulator(tournament, results);
     }
