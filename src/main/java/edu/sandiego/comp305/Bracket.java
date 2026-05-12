@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Bracket {
     public static final int MATCH_PAIR = 2;
+
     private final List<Team> teams;
 
     private final int round;

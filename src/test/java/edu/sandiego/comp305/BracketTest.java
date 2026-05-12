@@ -12,8 +12,8 @@ import java.util.List;
 
 public class BracketTest {
     private Team spain;
-    private Team argentina;
 
+    private Team argentina;
 
     @BeforeEach
     public void setUp() {
@@ -24,6 +24,7 @@ public class BracketTest {
 
 
     }
+
     @Test
     public void testPlayRound() {
         final List<Team> teams = new ArrayList<>();
