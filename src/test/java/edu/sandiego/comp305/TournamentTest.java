@@ -13,6 +13,8 @@ public class TournamentTest {
 
     private Team spain;
 
+    private Team argentina;
+
     @BeforeEach
     public void setUp(){
         final List<Team> teams = new ArrayList<>();
@@ -20,7 +22,7 @@ public class TournamentTest {
         spain = new Team(1, "Spain", "Es", 2165,
                 780, 461, 138, 1591, 697);
 
-        final Team argentina = new Team(2, "Argentina", "AR", 2113,
+        argentina = new Team(2, "Argentina", "AR", 2113,
                 1109, 610, 228, 2112, 1136);
 
         final Team france = new Team(3, "France", "FR", 2082,
@@ -86,5 +88,17 @@ public class TournamentTest {
         final Bracket singleBracket = new Bracket(
                 teams, 1, new EloStrategy());
         assertNotNull(singleBracket.getWinner());
+    }
+
+    @Test
+    public void testPlayRoundOddNUmTeams() {
+        final List<Team> teams = new ArrayList<>();
+        teams.add(spain);
+        teams.add(argentina);
+        teams.add(new Team(3, "France", "FR", 2082,
+                938, 474, 269, 1706, 1272));
+        final Bracket bracket = new Bracket(teams, 1, new EloStrategy());
+        final List<Team> winners = bracket.playRound();
+        assertEquals(1, winners.size());
     }
 }
