@@ -36,7 +36,7 @@ public class TournamentTest {
         final List<Group> groups = new ArrayList<>();
         groups.add(groupA);
 
-        tournament = new Tournament(groups);
+        tournament = new Tournament(groups, new EloStrategy());
 
     }
 

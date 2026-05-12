@@ -9,8 +9,12 @@ public class Tournament {
 
     private Bracket bracket;
 
-    public Tournament(final List<Group> groups){
+    private final PredictionStrategy strategy;
+
+    public Tournament(final List<Group> groups,
+                      final PredictionStrategy strategy){
         this.groups = new ArrayList<>(groups);
+        this.strategy = strategy;
         this.bracket = null;
     }
 
@@ -25,7 +29,7 @@ public class Tournament {
         for (final Group group : groups) {
             qualifiers.addAll(group.getQualifiers());
         }
-        bracket = new Bracket(qualifiers,1 , new EloStrategy());
+        bracket = new Bracket(qualifiers,1 , strategy);
     }
 
     public Team runKnockout() {
@@ -41,7 +45,7 @@ public class Tournament {
     }
 
     private List<Team> playNextRound(final List<Team> teams) {
-        final Bracket nextRound = new Bracket(teams, 1, new EloStrategy());
+        final Bracket nextRound = new Bracket(teams, 1, strategy);
         return nextRound.playRound();
     }
 }
