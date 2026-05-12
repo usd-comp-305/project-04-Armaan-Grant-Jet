@@ -5,20 +5,49 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Tournament {
+    private static final int SINGLE_ELIMINATION = 1;
+
     private final List<Group> groups;
 
-    private final Bracket bracket;
+    private Bracket bracket;
 
-    public Tournament(final List<Group> groups, final Bracket bracket){
+    private final PredictionStrategy strategy;
+
+    public Tournament(final List<Group> groups,
+                      final PredictionStrategy strategy){
         this.groups = new ArrayList<>(groups);
-        this.bracket = bracket;
+        this.strategy = strategy;
+        this.bracket = null;
     }
 
-    public void runGroupStage(){}
+    public void runGroupStage(){
+        for (final Group group : groups) {
+            group.playGroupStage();
+        }
+    }
 
-    public void buildBracket(){}
+    public void buildBracket() {
+        final List<Team> qualifiers = new ArrayList<>();
+        for (final Group group : groups) {
+            qualifiers.addAll(group.getQualifiers());
+        }
+        bracket = new Bracket(qualifiers, SINGLE_ELIMINATION , strategy);
+    }
 
-    public Team runKnockout(){
-        return null;
+    public Team runKnockout() {
+        if (bracket == null) {
+            throw new IllegalStateException(
+                    "Bracket not built. Call buildBracket() first.");
+        }
+        List<Team> current = bracket.playRound();
+        while (current.size() > 1) {
+            current = playNextRound(current);
+        }
+        return new Bracket(current,  SINGLE_ELIMINATION, strategy).getWinner();
+    }
+
+    private List<Team> playNextRound(final List<Team> teams) {
+        final Bracket nextRound = new Bracket(teams, 1, strategy);
+        return nextRound.playRound();
     }
 }
