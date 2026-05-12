@@ -46,6 +46,13 @@ public class Tournament {
         return new Bracket(current,  SINGLE_ELIMINATION, strategy).getWinner();
     }
 
+    public void reset() {
+        for (final Group group : groups) {
+            group.reset();
+        }
+        bracket = null;
+    }
+
     private List<Team> playNextRound(final List<Team> teams) {
         final Bracket nextRound = new Bracket(teams, 1, strategy);
         return nextRound.playRound();
