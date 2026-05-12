@@ -14,7 +14,11 @@ public class Tournament {
         this.bracket = null;
     }
 
-    public void runGroupStage(){}
+    public void runGroupStage(){
+        for (final Group group : groups) {
+            group.playGroupStage();
+        }
+    }
 
     public void buildBracket(){}
 
