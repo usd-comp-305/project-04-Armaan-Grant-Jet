@@ -29,6 +29,10 @@ public class Tournament {
     }
 
     public Team runKnockout() {
+        if (bracket == null) {
+            throw new IllegalStateException(
+                    "Bracket not built. Call buildBracket() first.");
+        }
         List<Team> current = bracket.playRound();
         while (current.size() > 1) {
             current = playNextRound(current);

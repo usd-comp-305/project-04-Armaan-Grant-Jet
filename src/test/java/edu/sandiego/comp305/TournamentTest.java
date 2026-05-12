@@ -2,9 +2,11 @@ package edu.sandiego.comp305;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TournamentTest {
     private Tournament tournament;
@@ -55,6 +57,17 @@ public class TournamentTest {
         tournament.buildBracket();
         final Team winner = tournament.runKnockout();
         assertNotNull(winner);
+    }
+
+    @Test
+    public void testRunKnockoutWithoutBracket() {
+        try {
+            tournament.runKnockout();
+            fail("Expected IllegalStateException");
+        } catch (IllegalStateException e) {
+            assertEquals("Bracket not built. Call buildBracket() first.",
+                    e.getMessage());
+        }
     }
 
 }
