@@ -41,4 +41,16 @@ public class SimulatorTest {
         assertEquals(10, results.getTotalRuns());
     }
 
+    @Test
+    public void testRunSimulationZeroRuns() {
+        simulator.runSimulations(0);
+        assertEquals(0, results.getTotalRuns());
+    }
+
+    @Test
+    public void testRunSimulationWinnerRecorded() {
+        simulator.runSimulations(5);
+        assertTrue(results.getTotalRuns() > 0);
+    }
+
 }
