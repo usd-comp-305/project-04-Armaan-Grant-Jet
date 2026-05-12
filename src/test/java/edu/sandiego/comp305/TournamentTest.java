@@ -70,4 +70,10 @@ public class TournamentTest {
         }
     }
 
+    @Test
+    public void testRunGroupStageEmptyGroups() {
+        final Tournament emptyTournament = new Tournament(
+                new ArrayList<>(), new EloStrategy());
+        emptyTournament.runGroupStage();
+    }
 }
