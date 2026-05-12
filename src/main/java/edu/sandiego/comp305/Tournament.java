@@ -28,7 +28,16 @@ public class Tournament {
         bracket = new Bracket(qualifiers,1 , new EloStrategy());
     }
 
-    public Team runKnockout(){
-        return null;
+    public Team runKnockout() {
+        List<Team> current = bracket.playRound();
+        while (current.size() > 1) {
+            current = playNextRound(current);
+        }
+        return new Bracket(current, 1, new EloStrategy()).getWinner();
     }
+    private List<Team> playNextRound(final List<Team> teams) {
+        final Bracket nextRound = new Bracket(teams, 1, new EloStrategy());
+        return nextRound.playRound();
+    }
+
 }
