@@ -11,6 +11,8 @@ public class Tournament {
 
     private final PredictionStrategy strategy;
 
+    private static final int SINGLE_ELIMINATION = 1;
+
     public Tournament(final List<Group> groups,
                       final PredictionStrategy strategy){
         this.groups = new ArrayList<>(groups);
@@ -29,7 +31,7 @@ public class Tournament {
         for (final Group group : groups) {
             qualifiers.addAll(group.getQualifiers());
         }
-        bracket = new Bracket(qualifiers,1 , strategy);
+        bracket = new Bracket(qualifiers, SINGLE_ELIMINATION , strategy);
     }
 
     public Team runKnockout() {
