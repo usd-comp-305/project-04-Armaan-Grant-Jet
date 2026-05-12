@@ -50,5 +50,12 @@ public class TournamentTest {
         tournament.buildBracket();
     }
 
+    @Test
+    public void testRunKnockout() {
+        tournament.runGroupStage();
+        tournament.buildBracket();
+        final Team winner = tournament.runKnockout();
+        assertNotNull(winner);
+    }
 
 }
