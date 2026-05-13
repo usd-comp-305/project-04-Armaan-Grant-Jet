@@ -1,6 +1,8 @@
 package edu.sandiego.comp305;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SimulatorResults {
@@ -36,8 +38,11 @@ public class SimulatorResults {
 
     public void printResults() {
         System.out.println("Total Simulations: " + totalRuns);
-        for (final Team team : winCounts.keySet()){
-            printTeamResult(team);
+        final List<Team> remaining = new ArrayList<>(winCounts.keySet());
+        while (!remaining.isEmpty()) {
+            final Team best = findTopTeam(remaining);
+            printTeamResult(best);
+            remaining.remove(best);
         }
     }
 
@@ -47,6 +52,16 @@ public class SimulatorResults {
         System.out.println(team.getCountryName()
                 + " - Wins: " + wins
                 + " - Probability: " + probability);
+    }
+
+    private Team findTopTeam(final List<Team> remaining) {
+        Team best = remaining.get(0);
+        for (final Team team : remaining) {
+            if (winCounts.get(team) > winCounts.get(best)) {
+                best = team;
+            }
+        }
+        return best;
     }
 }
 

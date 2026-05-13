@@ -1,6 +1,8 @@
 package edu.sandiego.comp305;
 
 public class Simulator {
+
+    public static final int DEFAULT_SIMULATIONS = 1000;
     
     private final Tournament tournament;
 
