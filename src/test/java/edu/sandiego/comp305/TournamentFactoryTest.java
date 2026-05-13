@@ -18,6 +18,10 @@ public class TournamentFactoryTest {
         teams = loader.loadTeams();
     }
 
-
+    @Test
+    public void testBuildGroupsNotNull() {
+        final List<Group> groups = TournamentFactory.buildGroups(teams);
+        assertNotNull(groups);
+    }
 
 }
