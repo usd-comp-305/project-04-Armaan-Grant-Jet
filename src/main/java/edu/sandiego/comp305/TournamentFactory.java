@@ -44,7 +44,12 @@ public class TournamentFactory {
                                     final List<String> codes) {
         final List<Team> groupTeams = new ArrayList<>();
         for (final String code : codes) {
-            groupTeams.add(teamMap.get(code));
+            final Team team = teamMap.get(code);
+            if (team == null) {
+                System.out.println("Warning: no team found for code: " + code);
+                continue;
+            }
+            groupTeams.add(team);
         }
         return new Group(name, groupTeams);
     }
