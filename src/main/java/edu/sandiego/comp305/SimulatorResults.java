@@ -44,14 +44,14 @@ public class SimulatorResults {
             printTeamResult(best);
             remaining.remove(best);
         }
+        printFavorite();
     }
 
     private void printTeamResult(final Team team){
         final int wins = winCounts.get(team);
-        final double probability = getWinProbability(team);
-        System.out.println(team.getCountryName()
-                + " - Wins: " + wins
-                + " - Probability: " + probability);
+        final double probability = getWinProbability(team) * 100;
+        System.out.printf("%s - Wins: %d, Probability: %.1f%%%n",
+                team.getCountryName(), wins, probability);
     }
 
     private Team findTopTeam(final List<Team> remaining) {
@@ -62,6 +62,18 @@ public class SimulatorResults {
             }
         }
         return best;
+    }
+
+    private void printFavorite() {
+        Team favorite = null;
+        for (final Team team : winCounts.keySet()) {
+            if (favorite == null
+                    || winCounts.get(team) > winCounts.get(favorite)) {
+                favorite = team;
+            }
+        }
+        System.out.println("\n" + favorite.getCountryName() +
+                " has the best chance of winning the World Cup!");
     }
 }
 
