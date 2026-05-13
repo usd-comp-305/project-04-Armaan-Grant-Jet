@@ -24,4 +24,10 @@ public class TournamentFactoryTest {
         assertNotNull(groups);
     }
 
+    @Test
+    public void testBuildGroupSize() {
+        final List<Group> groups = TournamentFactory.buildGroups(teams);
+        assertEquals(12, groups.size());
+    }
+
 }
