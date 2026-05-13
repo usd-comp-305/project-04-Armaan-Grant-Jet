@@ -20,7 +20,7 @@ public class TournamentFactory {
         groups.add(buildGroup("C", teamMap, List.of("BR", "MA", "SQ", "HT")));
         groups.add(buildGroup("D", teamMap, List.of("US", "PY", "AU", "TR")));
         groups.add(buildGroup("E", teamMap, List.of("DE", "EC", "CI", "CW")));
-        groups.add(buildGroup("F", teamMap, List.of("NL", "JP", "TN", "Se")));
+        groups.add(buildGroup("F", teamMap, List.of("NL", "JP", "TN", "SE")));
         groups.add(buildGroup("G", teamMap, List.of("BE", "IR", "EG", "NZ")));
         groups.add(buildGroup("H", teamMap, List.of("ES", "UY", "SA", "CV")));
         groups.add(buildGroup("I", teamMap, List.of("FR", "SN", "NO", "IQ")));
@@ -32,7 +32,11 @@ public class TournamentFactory {
     }
 
     private static Map<String, Team> buildTeamMap(final List<Team> teams) {
-        return null;
+        final Map<String, Team> teamMap = new HashMap<>();
+        for (final Team team : teams) {
+            teamMap.put(team.getCountryCode(), team);
+        }
+        return teamMap;
     }
 
     private static Group buildGroup(final String name,
