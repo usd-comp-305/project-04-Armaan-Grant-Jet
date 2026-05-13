@@ -78,18 +78,20 @@ public class Tournament {
     private Standings findBestThird(final List<Standings> remaining) {
         Standings best = remaining.get(0);
         for (final Standings standing : remaining) {
-            if (standing.getPoints() > best.getPoints()) {
+            if (isBetter(standing, best)) {
                 best = standing;
-            } else if (standing.getPoints() == best.getPoints()) {
-                if (standing.getGoalDiff() > best.getGoalDiff()) {
-                    best = standing;
-                } else if (standing.getGoalDiff() == best.getGoalDiff()) {
-                    if (standing.getGoalsFor() > best.getGoalsFor()) {
-                        best = standing;
-                    }
-                }
             }
         }
         return best;
+    }
+
+    private boolean isBetter(final Standings a, final Standings b) {
+        if (a.getPoints() != b.getPoints()) {
+            return a.getPoints() > b.getPoints();
+        }
+        if (a.getGoalDiff() != b.getGoalDiff()) {
+            return a.getGoalDiff() > b.getGoalDiff();
+        }
+        return a.getGoalsFor() > b.getGoalsFor();
     }
 }
