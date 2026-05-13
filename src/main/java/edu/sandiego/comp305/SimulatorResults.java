@@ -38,6 +38,10 @@ public class SimulatorResults {
 
     public void printResults() {
         System.out.println("Total Simulations: " + totalRuns);
+        if (totalRuns == 0) {
+            System.out.println("No simulations run.");
+            return;
+        }
         final List<Team> remaining = new ArrayList<>(winCounts.keySet());
         while (!remaining.isEmpty()) {
             final Team best = findTopTeam(remaining);
