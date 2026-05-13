@@ -66,10 +66,11 @@ public class SimulatorResults {
 
     private void printFavorite() {
         Team favorite = null;
-        for (final Team team : winCounts.keySet()) {
-            if (favorite == null
-                    || winCounts.get(team) > winCounts.get(favorite)) {
-                favorite = team;
+        int maxWins = 0;
+        for (final Map.Entry<Team, Integer> entry : winCounts.entrySet()) {
+            if (entry.getValue() > maxWins) {
+                maxWins = entry.getValue();
+                favorite = entry.getKey();
             }
         }
         System.out.println("\n" + favorite.getCountryName() +
