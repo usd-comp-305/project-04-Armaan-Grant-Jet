@@ -87,13 +87,20 @@ public class Tournament {
         return best;
     }
 
-    private boolean isBetter(final Standings currentStanding, final Standings bestStanding) {
-        if (currentStanding.getPoints().intValue() != bestStanding.getPoints().intValue()) {
-            return currentStanding.getPoints() > bestStanding.getPoints();
+    private boolean isBetter(final Standings currentStanding,
+                             final Standings bestStanding) {
+
+        if (currentStanding.getPoints().intValue() !=
+                bestStanding.getPoints().intValue()) {
+            return currentStanding.getPoints() >
+                    bestStanding.getPoints();
         }
-        if (currentStanding.getGoalDiff().intValue() != bestStanding.getGoalDiff().intValue()) {
-            return currentStanding.getGoalDiff() > bestStanding.getGoalDiff();
+        if (currentStanding.getGoalDiff().intValue() !=
+                bestStanding.getGoalDiff().intValue()) {
+            return currentStanding.getGoalDiff() >
+                    bestStanding.getGoalDiff();
         }
-        return currentStanding.getGoalsFor() > bestStanding.getGoalsFor();
+        return currentStanding.getGoalsFor() >
+                bestStanding.getGoalsFor();
     }
 }
