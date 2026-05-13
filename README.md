@@ -18,6 +18,10 @@ The data pipeline fetches live data from [eloratings.net](https://eloratings.net
 | `GoalsScored` | Total goals scored |
 | `GoalsConceded` | Total goals conceded |
 
+## Architecture 
+
+![World Cup Simulator Diagram](docs/WorldCupSimulator.png)
+
 ## Project Structure
 
 ```
