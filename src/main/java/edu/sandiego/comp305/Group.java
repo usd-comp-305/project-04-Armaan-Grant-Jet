@@ -80,4 +80,8 @@ public class Group {
     public List<Team> getTeams() {
         return new ArrayList<>(teams);
     }
+
+    public Standings getThirdPlace() {
+        return getStandings().get(2);
+    }
 }

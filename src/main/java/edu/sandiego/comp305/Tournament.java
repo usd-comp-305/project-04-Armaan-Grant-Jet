@@ -28,9 +28,12 @@ public class Tournament {
 
     public void buildBracket() {
         final List<Team> qualifiers = new ArrayList<>();
+        final List<Standings> thirdPlaceStandings = new ArrayList<>();
         for (final Group group : groups) {
             qualifiers.addAll(group.getQualifiers());
+            thirdPlaceStandings.add(group.getThirdPlace());
         }
+        qualifiers.addAll(getBestThirdPlace(thirdPlaceStandings));
         bracket = new Bracket(qualifiers, SINGLE_ELIMINATION , strategy);
     }
 
@@ -56,5 +59,37 @@ public class Tournament {
     private List<Team> playNextRound(final List<Team> teams) {
         final Bracket nextRound = new Bracket(teams, 1, strategy);
         return nextRound.playRound();
+    }
+
+    private List<Team> getBestThirdPlace(
+            final List<Standings> thirdPlaceStandings) {
+        final List<Team> bestThird = new ArrayList<>();
+        final List<Standings> remaining =
+                new ArrayList<>(thirdPlaceStandings);
+
+        for (int i = 0; i < 8; i++) {
+            final Standings best = findBestThird(remaining);
+            bestThird.add(best.getTeam());
+            remaining.remove(best);
+        }
+        return bestThird;
+    }
+
+    private Standings findBestThird(final List<Standings> remaining) {
+        Standings best = remaining.get(0);
+        for (final Standings standing : remaining) {
+            if (standing.getPoints() > best.getPoints()) {
+                best = standing;
+            } else if (standing.getPoints() == best.getPoints()) {
+                if (standing.getGoalDiff() > best.getGoalDiff()) {
+                    best = standing;
+                } else if (standing.getGoalDiff() == best.getGoalDiff()) {
+                    if (standing.getGoalsFor() > best.getGoalsFor()) {
+                        best = standing;
+                    }
+                }
+            }
+        }
+        return best;
     }
 }
