@@ -67,7 +67,9 @@ public class Tournament {
         final List<Standings> remaining =
                 new ArrayList<>(thirdPlaceStandings);
 
-        for (int i = 0; i < 8; i++) {
+        final int count = Math.min(8, remaining.size());
+
+        for (int i = 0; i < count; i++) {
             final Standings best = findBestThird(remaining);
             bestThird.add(best.getTeam());
             remaining.remove(best);
