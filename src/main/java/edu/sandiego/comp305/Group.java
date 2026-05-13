@@ -75,4 +75,9 @@ public class Group {
             standing.reset();
         }
     }
+
+    //for TournamentFactoryTest
+    public List<Team> getTeams() {
+        return new ArrayList<>(teams);
+    }
 }
