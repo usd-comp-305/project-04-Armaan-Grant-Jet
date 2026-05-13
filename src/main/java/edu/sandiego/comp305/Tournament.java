@@ -86,10 +86,10 @@ public class Tournament {
     }
 
     private boolean isBetter(final Standings a, final Standings b) {
-        if (a.getPoints() != b.getPoints()) {
+        if (a.getPoints().intValue() != b.getPoints().intValue()) {
             return a.getPoints() > b.getPoints();
         }
-        if (a.getGoalDiff() != b.getGoalDiff()) {
+        if (a.getGoalDiff().intValue() != b.getGoalDiff().intValue()) {
             return a.getGoalDiff() > b.getGoalDiff();
         }
         return a.getGoalsFor() > b.getGoalsFor();
