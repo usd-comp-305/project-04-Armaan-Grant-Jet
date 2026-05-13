@@ -56,4 +56,18 @@ public class TournamentFactoryTest {
         assertTrue(codes.contains("ZA"));
         assertTrue(codes.contains("CZ"));
     }
+
+    @Test
+    public void testBuildGroupsWithInvalidTeam() {
+        final List<Group> groups = TournamentFactory.buildGroups(teams);
+        final Group groupA = groups.get(0);
+        final List<Team> groupATeams = groupA.getTeams();
+
+        final List<String> codes = new ArrayList<>();
+
+        for (final Team team: groupATeams) {
+            codes.add(team.getCountryCode());
+        }
+        assertFalse(codes.contains("VV"));
+    }
 }
