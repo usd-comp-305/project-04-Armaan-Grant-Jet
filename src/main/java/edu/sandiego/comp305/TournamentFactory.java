@@ -42,7 +42,11 @@ public class TournamentFactory {
     private static Group buildGroup(final String name,
                                     final Map<String, Team> teamMap,
                                     final List<String> codes) {
-        return null;
+        final List<Team> groupTeams = new ArrayList<>();
+        for (final String code : codes) {
+            groupTeams.add(teamMap.get(code));
+        }
+        return new Group(name, groupTeams);
     }
 
 }
