@@ -46,3 +46,4 @@ bin/
 data/__pycache__/
 data/*.pyc
 data/QualifiedWorldCupTeams.csvout/
+QualifiedWorldCupTeams.csv
