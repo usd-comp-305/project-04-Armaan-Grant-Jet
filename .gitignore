@@ -45,4 +45,4 @@ bin/
 ### Python ###
 data/__pycache__/
 data/*.pyc
-data/QualifiedWorldCupTeams.csv
+data/QualifiedWorldCupTeams.csvout/
